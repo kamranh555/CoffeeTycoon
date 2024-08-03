@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://b514v0wib5ptp"]
+
+[ext_resource type="Texture2D" uid="uid://c5hn4dk32usf5" path="res://Assets/Coffee-igredients.png" id="1_b66wq"]
+[ext_resource type="Script" path="res://Scenes/Coffees/recipe_container.gd" id="1_sw8gv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_83s8w"]
+font_size = 11
+font_color = Color(0, 0, 0, 1)
+
+[node name="RecipeContainer" type="HBoxContainer"]
+custom_minimum_size = Vector2(24, 16)
+offset_right = 24.0
+offset_bottom = 16.0
+script = ExtResource("1_sw8gv")
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="BoxContainer"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_b66wq")
+centered = false
+hframes = 4
+vframes = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "2"
+label_settings = SubResource("LabelSettings_83s8w")
+horizontal_alignment = 1
+vertical_alignment = 1

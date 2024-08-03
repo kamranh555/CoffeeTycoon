@@ -1,0 +1,162 @@
+[gd_scene load_steps=8 format=3 uid="uid://crpb0hhm2c5mk"]
+
+[ext_resource type="Script" path="res://Scenes/Coffees/coffee_container.gd" id="1_qbw3s"]
+[ext_resource type="Texture2D" uid="uid://baox2p2byac7p" path="res://Assets/Coffee-types.png" id="2_ppwna"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mkj8t"]
+bg_color = Color(0.835294, 0.909804, 0.952941, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8kyih"]
+font_size = 12
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yc0u1"]
+font_size = 12
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m7day"]
+font_size = 12
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2kfi2"]
+font_size = 12
+font_color = Color(0, 0, 0, 1)
+
+[node name="CoffeeContainer" type="Panel" node_paths=PackedStringArray("name_label", "coffee_icon", "price_label", "level_label", "upgrade_button", "special_toggle", "specials")]
+custom_minimum_size = Vector2(150, 180)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -345.0
+offset_top = -560.0
+offset_right = -195.0
+offset_bottom = -400.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mkj8t")
+script = ExtResource("1_qbw3s")
+name_label = NodePath("CoffeeContainer/CoffeeImage/Label")
+coffee_icon = NodePath("CoffeeContainer/CoffeeImage/BoxContainer/Sprite2D")
+price_label = NodePath("CoffeeContainer/CoffeeText/Price")
+level_label = NodePath("CoffeeContainer/CoffeeLevel/Label")
+upgrade_button = NodePath("CoffeeContainer/CoffeeLevel/UpgradeButton")
+special_toggle = NodePath("CoffeeContainer/SelectSpecial/CheckButton")
+specials = NodePath("CoffeeContainer/SelectSpecial")
+
+[node name="CoffeeContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container" type="Container" parent="CoffeeContainer"]
+custom_minimum_size = Vector2(10, 5)
+layout_mode = 2
+
+[node name="CoffeeImage" type="HBoxContainer" parent="CoffeeContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="BoxContainer" type="BoxContainer" parent="CoffeeContainer/CoffeeImage"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="CoffeeContainer/CoffeeImage/BoxContainer"]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_ppwna")
+centered = false
+hframes = 4
+vframes = 2
+
+[node name="Label" type="Label" parent="CoffeeContainer/CoffeeImage"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Coffee Name"
+label_settings = SubResource("LabelSettings_8kyih")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="CoffeeText" type="VBoxContainer" parent="CoffeeContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Price" type="Label" parent="CoffeeContainer/CoffeeText"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Price: $2.50"
+label_settings = SubResource("LabelSettings_8kyih")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CoffeeLevel" type="HBoxContainer" parent="CoffeeContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CoffeeContainer/CoffeeLevel"]
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Lv. 1"
+label_settings = SubResource("LabelSettings_yc0u1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpgradeButton" type="Button" parent="CoffeeContainer/CoffeeLevel"]
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 12
+text = "Upgrade"
+
+[node name="RecipeText" type="HBoxContainer" parent="CoffeeContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="CoffeeContainer/RecipeText"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Recipe:"
+label_settings = SubResource("LabelSettings_m7day")
+horizontal_alignment = 1
+
+[node name="RecipeContainer" type="HBoxContainer" parent="CoffeeContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="SelectSpecial" type="HBoxContainer" parent="CoffeeContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CoffeeContainer/SelectSpecial"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Special"
+label_settings = SubResource("LabelSettings_2kfi2")
+
+[node name="CheckButton" type="CheckButton" parent="CoffeeContainer/SelectSpecial"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[connection signal="pressed" from="CoffeeContainer/CoffeeLevel/UpgradeButton" to="." method="_on_upgrade_button_pressed"]
+[connection signal="toggled" from="CoffeeContainer/SelectSpecial/CheckButton" to="." method="_on_check_button_toggled"]

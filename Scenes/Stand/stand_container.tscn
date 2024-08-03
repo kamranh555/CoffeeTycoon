@@ -1,0 +1,115 @@
+[gd_scene load_steps=7 format=3 uid="uid://qfb66ch5t7t8"]
+
+[ext_resource type="Script" path="res://Scenes/Stand/stand_container.gd" id="1_y8guy"]
+[ext_resource type="Texture2D" uid="uid://baox2p2byac7p" path="res://Assets/Coffee-types.png" id="2_vwgiy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mkj8t"]
+bg_color = Color(0.835294, 0.909804, 0.952941, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8kyih"]
+font_size = 14
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hnwr6"]
+font_size = 12
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m7day"]
+font_size = 14
+font_color = Color(0, 0, 0, 1)
+
+[node name="StandsContainer" type="PanelContainer"]
+offset_right = 536.0
+offset_bottom = 72.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_mkj8t")
+script = ExtResource("1_y8guy")
+
+[node name="MarginContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Space3" type="Container" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="UpgradeImage" type="HBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Space" type="Container" parent="MarginContainer/UpgradeImage"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="Container" type="Container" parent="MarginContainer/UpgradeImage"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/UpgradeImage/Container"]
+scale = Vector2(2, 2)
+texture = ExtResource("2_vwgiy")
+centered = false
+hframes = 4
+vframes = 2
+
+[node name="Space3" type="Container" parent="MarginContainer/UpgradeImage"]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+
+[node name="UpgradeText" type="VBoxContainer" parent="MarginContainer/UpgradeImage"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="MarginContainer/UpgradeImage/UpgradeText"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Espresso Machine - Advanced"
+label_settings = SubResource("LabelSettings_8kyih")
+vertical_alignment = 1
+
+[node name="Info" type="Label" parent="MarginContainer/UpgradeImage/UpgradeText"]
+custom_minimum_size = Vector2(200, 44)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Information
+About the upgrade"
+label_settings = SubResource("LabelSettings_hnwr6")
+autowrap_mode = 2
+justification_flags = 0
+
+[node name="UpgradeLevel" type="VBoxContainer" parent="MarginContainer/UpgradeImage"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="BonusInfo" type="Label" parent="MarginContainer/UpgradeImage/UpgradeLevel"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Speed +1"
+label_settings = SubResource("LabelSettings_m7day")
+
+[node name="UpgradeButton" type="Button" parent="MarginContainer/UpgradeImage/UpgradeLevel"]
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 14
+text = "$ 1,000.0
+Buy"
+
+[node name="Space2" type="Container" parent="MarginContainer/UpgradeImage"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="Space4" type="Container" parent="MarginContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="MarginContainer/UpgradeImage/UpgradeLevel/UpgradeButton" to="." method="_on_upgrade_button_pressed"]

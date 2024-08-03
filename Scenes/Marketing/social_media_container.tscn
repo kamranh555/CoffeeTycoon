@@ -1,0 +1,117 @@
+[gd_scene load_steps=6 format=3 uid="uid://cjumiamkhsasw"]
+
+[ext_resource type="Script" path="res://Scenes/Marketing/social_media_container.gd" id="1_ngj5h"]
+[ext_resource type="Texture2D" uid="uid://baox2p2byac7p" path="res://Assets/Coffee-types.png" id="2_bncqt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mkj8t"]
+bg_color = Color(0.835294, 0.909804, 0.952941, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8kyih"]
+font_size = 13
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hnwr6"]
+font_size = 12
+font_color = Color(0, 0, 0, 1)
+
+[node name="SocialMedia" type="PanelContainer" node_paths=PackedStringArray("likes_label", "followers_label", "total_posts", "post_button", "image_icon")]
+offset_right = 224.0
+offset_bottom = 256.0
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_mkj8t")
+script = ExtResource("1_ngj5h")
+likes_label = NodePath("MarginContainer/UpgradeImage/UpgradeText/LikesLabel")
+followers_label = NodePath("MarginContainer/UpgradeImage/UpgradeText/FollowersLabel")
+total_posts = NodePath("MarginContainer/UpgradeImage/UpgradeText/PostsLabel")
+post_button = NodePath("MarginContainer/UpgradeImage/UpgradeText/HBoxContainer/UpgradeLevel/UpgradeButton")
+image_icon = NodePath("MarginContainer/UpgradeImage/UpgradeText/Container/Sprite2D")
+
+[node name="MarginContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Space3" type="Container" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="UpgradeImage" type="HBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Space" type="Container" parent="MarginContainer/UpgradeImage"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+
+[node name="UpgradeText" type="VBoxContainer" parent="MarginContainer/UpgradeImage"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="Container" type="Container" parent="MarginContainer/UpgradeImage/UpgradeText"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/UpgradeImage/UpgradeText/Container"]
+scale = Vector2(4, 4)
+texture = ExtResource("2_bncqt")
+centered = false
+hframes = 4
+vframes = 2
+
+[node name="LikesLabel" type="Label" parent="MarginContainer/UpgradeImage/UpgradeText"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Likes on post: XXX"
+label_settings = SubResource("LabelSettings_8kyih")
+vertical_alignment = 1
+
+[node name="FollowersLabel" type="Label" parent="MarginContainer/UpgradeImage/UpgradeText"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Total followers: XXX"
+label_settings = SubResource("LabelSettings_hnwr6")
+autowrap_mode = 2
+justification_flags = 0
+
+[node name="PostsLabel" type="Label" parent="MarginContainer/UpgradeImage/UpgradeText"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Total followers: XXX"
+label_settings = SubResource("LabelSettings_hnwr6")
+autowrap_mode = 2
+justification_flags = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/UpgradeImage/UpgradeText"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="UpgradeLevel" type="VBoxContainer" parent="MarginContainer/UpgradeImage/UpgradeText/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Space5" type="Container" parent="MarginContainer/UpgradeImage/UpgradeText/HBoxContainer/UpgradeLevel"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="UpgradeButton" type="Button" parent="MarginContainer/UpgradeImage/UpgradeText/HBoxContainer/UpgradeLevel"]
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 14
+text = "Create a post"
+
+[node name="Space2" type="Container" parent="MarginContainer/UpgradeImage"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+
+[node name="Space4" type="Container" parent="MarginContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="MarginContainer/UpgradeImage/UpgradeText/HBoxContainer/UpgradeLevel/UpgradeButton" to="." method="_on_upgrade_button_pressed"]

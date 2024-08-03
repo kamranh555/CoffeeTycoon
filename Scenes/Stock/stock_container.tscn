@@ -1,0 +1,157 @@
+[gd_scene load_steps=8 format=3 uid="uid://cafpwjf35ck7l"]
+
+[ext_resource type="Script" path="res://Scenes/Stock/stock_container.gd" id="1_e1fdo"]
+[ext_resource type="Texture2D" uid="uid://c5hn4dk32usf5" path="res://Assets/Coffee-igredients.png" id="2_2lk1d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mkj8t"]
+bg_color = Color(0.835294, 0.909804, 0.952941, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8kyih"]
+font_size = 13
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gamht"]
+font_size = 11
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yc0u1"]
+font_size = 11
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m7day"]
+font_size = 11
+font_color = Color(0, 0, 0, 1)
+
+[node name="StockContainer" type="Panel" node_paths=PackedStringArray("name_label", "quantity_label", "stock_icon", "buy_quantity", "cost_label", "buy_button", "add_button", "less_button")]
+custom_minimum_size = Vector2(155, 125)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -270.0
+offset_top = -480.0
+offset_right = -115.0
+offset_bottom = -362.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mkj8t")
+script = ExtResource("1_e1fdo")
+name_label = NodePath("StockContainer/VBoxContainer/HBoxContainer/ContainerStockText/Name")
+quantity_label = NodePath("StockContainer/VBoxContainer/HBoxContainer/ContainerStockText/Quantity")
+stock_icon = NodePath("StockContainer/VBoxContainer/HBoxContainer/StockImage/Sprite2D")
+buy_quantity = NodePath("StockContainer/QuantityBuy/Label")
+cost_label = NodePath("StockContainer/CostBuyQuantity/Label")
+buy_button = NodePath("StockContainer/CostBuyQuantity/BuyButton")
+add_button = NodePath("StockContainer/QuantityBuy/AddButton")
+less_button = NodePath("StockContainer/QuantityBuy/LessButton")
+
+[node name="StockContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container" type="Container" parent="StockContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StockContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StockContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Container" type="Container" parent="StockContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="StockImage" type="HBoxContainer" parent="StockContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="StockContainer/VBoxContainer/HBoxContainer/StockImage"]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_2lk1d")
+centered = false
+hframes = 4
+vframes = 2
+
+[node name="ContainerStockText" type="VBoxContainer" parent="StockContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="StockContainer/VBoxContainer/HBoxContainer/ContainerStockText"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Chocolate"
+label_settings = SubResource("LabelSettings_8kyih")
+vertical_alignment = 1
+
+[node name="Quantity" type="Label" parent="StockContainer/VBoxContainer/HBoxContainer/ContainerStockText"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Quantity: xxx"
+label_settings = SubResource("LabelSettings_gamht")
+
+[node name="QuantityBuy" type="HBoxContainer" parent="StockContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="LessButton" type="Button" parent="StockContainer/QuantityBuy"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 12
+text = " - "
+
+[node name="Label" type="Label" parent="StockContainer/QuantityBuy"]
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "50"
+label_settings = SubResource("LabelSettings_yc0u1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AddButton" type="Button" parent="StockContainer/QuantityBuy"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 12
+text = " + "
+
+[node name="CostBuyQuantity" type="HBoxContainer" parent="StockContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="StockContainer/CostBuyQuantity"]
+layout_mode = 2
+text = "Cost: $20.00"
+label_settings = SubResource("LabelSettings_m7day")
+horizontal_alignment = 1
+
+[node name="BuyButton" type="Button" parent="StockContainer/CostBuyQuantity"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 14
+text = "Buy"
+
+[connection signal="pressed" from="StockContainer/QuantityBuy/LessButton" to="." method="_on_less_button_pressed"]
+[connection signal="pressed" from="StockContainer/QuantityBuy/AddButton" to="." method="_on_add_button_pressed"]
+[connection signal="pressed" from="StockContainer/CostBuyQuantity/BuyButton" to="." method="_on_buy_button_pressed"]

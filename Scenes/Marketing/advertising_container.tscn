@@ -1,0 +1,153 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4iysy12vr872"]
+
+[ext_resource type="Script" path="res://Scenes/Marketing/advertising_container.gd" id="1_xkcr5"]
+[ext_resource type="Texture2D" uid="uid://baox2p2byac7p" path="res://Assets/Coffee-types.png" id="2_rpfmc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mkj8t"]
+bg_color = Color(0.835294, 0.909804, 0.952941, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8kyih"]
+font_size = 15
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_b0unj"]
+font_size = 13
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m7day"]
+font_size = 13
+font_color = Color(0, 0, 0, 1)
+
+[node name="AdvertisingContainer" type="PanelContainer" node_paths=PackedStringArray("item_name_label", "item_info_label", "back_button", "forward_button", "buy_button", "bonus_info_label", "display_image")]
+custom_minimum_size = Vector2(0, 152)
+offset_right = 394.0
+offset_bottom = 152.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_mkj8t")
+script = ExtResource("1_xkcr5")
+item_name_label = NodePath("HBoxContainer/UpgradeContainer/UpgradeImage/UpgradeText/Label")
+item_info_label = NodePath("HBoxContainer/UpgradeContainer/UpgradeImage/UpgradeText/Info")
+back_button = NodePath("HBoxContainer/BackButton")
+forward_button = NodePath("HBoxContainer/ForwardButton")
+buy_button = NodePath("HBoxContainer/UpgradeContainer/HBoxContainer/UpgradeButton")
+bonus_info_label = NodePath("HBoxContainer/UpgradeContainer/HBoxContainer/BonusInfo")
+display_image = NodePath("HBoxContainer/UpgradeContainer/UpgradeImage/Container/Sprite2D")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Container2" type="Container" parent="HBoxContainer"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+text = "  <  "
+
+[node name="Container4" type="Container" parent="HBoxContainer"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+
+[node name="UpgradeContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Container" type="Container" parent="HBoxContainer/UpgradeContainer"]
+custom_minimum_size = Vector2(10, 5)
+layout_mode = 2
+
+[node name="UpgradeImage" type="HBoxContainer" parent="HBoxContainer/UpgradeContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Container" type="Container" parent="HBoxContainer/UpgradeContainer/UpgradeImage"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="HBoxContainer/UpgradeContainer/UpgradeImage/Container"]
+scale = Vector2(2, 2)
+texture = ExtResource("2_rpfmc")
+centered = false
+hframes = 4
+vframes = 2
+
+[node name="Container3" type="Container" parent="HBoxContainer/UpgradeContainer/UpgradeImage"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="UpgradeText" type="VBoxContainer" parent="HBoxContainer/UpgradeContainer/UpgradeImage"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="HBoxContainer/UpgradeContainer/UpgradeImage/UpgradeText"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Newspaper ad"
+label_settings = SubResource("LabelSettings_8kyih")
+vertical_alignment = 1
+
+[node name="Info" type="Label" parent="HBoxContainer/UpgradeContainer/UpgradeImage/UpgradeText"]
+custom_minimum_size = Vector2(200, 44)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Information about the
+advertisement"
+label_settings = SubResource("LabelSettings_b0unj")
+autowrap_mode = 2
+justification_flags = 0
+
+[node name="Container2" type="Container" parent="HBoxContainer/UpgradeContainer"]
+custom_minimum_size = Vector2(10, 5)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/UpgradeContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="BonusInfo" type="Label" parent="HBoxContainer/UpgradeContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Passive boost to popuparity"
+label_settings = SubResource("LabelSettings_m7day")
+autowrap_mode = 2
+
+[node name="UpgradeButton" type="Button" parent="HBoxContainer/UpgradeContainer/HBoxContainer"]
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "$ 1,000.0
+Buy"
+
+[node name="Container3" type="Container" parent="HBoxContainer"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+
+[node name="ForwardButton" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+text = "  >  "
+
+[node name="Container" type="Container" parent="HBoxContainer"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+
+[connection signal="pressed" from="HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/UpgradeContainer/HBoxContainer/UpgradeButton" to="." method="_on_upgrade_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/ForwardButton" to="." method="_on_forward_button_pressed"]

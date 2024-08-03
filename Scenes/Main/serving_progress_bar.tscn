@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfykqpf6v2m8j"]
+
+[ext_resource type="Texture2D" uid="uid://c5hn4dk32usf5" path="res://Assets/Coffee-igredients.png" id="1_t5lab"]
+[ext_resource type="Script" path="res://Scenes/Main/serving_progress_bar.gd" id="1_ukv44"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjsa5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xwk1b"]
+bg_color = Color(0.94902, 0.819608, 0.0901961, 1)
+
+[node name="ServingProgressBar" type="HBoxContainer"]
+custom_minimum_size = Vector2(50, 8)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -4.0
+offset_right = 25.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_ukv44")
+
+[node name="Container" type="Container" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Container"]
+position = Vector2(-6, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_t5lab")
+hframes = 4
+vframes = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_pjsa5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xwk1b")
+show_percentage = false

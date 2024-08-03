@@ -1,0 +1,369 @@
+[gd_scene load_steps=18 format=3 uid="uid://bqu8vwv7qkndr"]
+
+[ext_resource type="Script" path="res://Scenes/Main/main.gd" id="1_4bokm"]
+[ext_resource type="Texture2D" uid="uid://d3tmukbudyg65" path="res://Assets/DialogueBubble.png" id="2_kmgpx"]
+[ext_resource type="PackedScene" uid="uid://c1wlypkhf1wmo" path="res://Scenes/Main/park.tscn" id="3_1batx"]
+[ext_resource type="PackedScene" uid="uid://k4rau1oin7pq" path="res://Scenes/Stock/stock.tscn" id="4_anp78"]
+[ext_resource type="PackedScene" uid="uid://by0kjcwwjujbe" path="res://Scenes/Coffees/coffees.tscn" id="5_8nuhg"]
+[ext_resource type="PackedScene" uid="uid://dyfu2aa5ov68s" path="res://Scenes/Stand/stand.tscn" id="7_ajitj"]
+[ext_resource type="PackedScene" uid="uid://dq1a2kmlshwdp" path="res://Scenes/Marketing/marketing.tscn" id="7_scda8"]
+[ext_resource type="PackedScene" uid="uid://wck1g40keou1" path="res://Scenes/Skills/skills.tscn" id="8_41p4d"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o1cr5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cmtxr"]
+font_size = 19
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_w1k38"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ipoew"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c8o64"]
+bg_color = Color(0.773246, 0, 0.193328, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2pd8d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qfwsv"]
+bg_color = Color(0.054902, 0.419608, 0.682353, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_62iu6"]
+font_size = 15
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_prj7o"]
+draw_center = false
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0, 0, 0, 1)
+expand_margin_left = 6.0
+expand_margin_top = 6.0
+expand_margin_right = 6.0
+expand_margin_bottom = 6.0
+
+[node name="Main" type="Control" node_paths=PackedStringArray("scene_view", "money_label", "sale_info_label", "points_label", "start_button", "popularity_bar", "experience_bar", "timer_label", "tab_container", "date_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_4bokm")
+scene_view = NodePath("MainVBox/MenuContainer/TabContainer/Main/VBoxContainer/HBoxContainer/SceneView/SubViewportContainer/SubViewport/Park")
+money_label = NodePath("MainVBox/KeyInfo/NinePatchRect/VBoxContainer/HBoxContainer/MoneyLabel")
+sale_info_label = NodePath("MainVBox/OtherInfo/NinePatchRect/VBoxContainer/SaleInfoLabel")
+points_label = NodePath("MainVBox/KeyInfo/NinePatchRect/VBoxContainer/HBoxContainer2/PointsLabel")
+start_button = NodePath("MainVBox/StartButton")
+popularity_bar = NodePath("MainVBox/KeyInfo/NinePatchRect/VBoxContainer/HBoxContainer2/PopularityBar")
+experience_bar = NodePath("MainVBox/KeyInfo/NinePatchRect/VBoxContainer/HBoxContainer2/ExperienceBar")
+timer_label = NodePath("MainVBox/OtherInfo/NinePatchRect/VBoxContainer/HBoxContainer/TimerLabel")
+tab_container = NodePath("MainVBox/MenuContainer/TabContainer")
+date_label = NodePath("MainVBox/KeyInfo/NinePatchRect/VBoxContainer/HBoxContainer/DateLabel")
+
+[node name="MainVBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Space3" type="Container" parent="MainVBox"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="KeyInfo" type="Panel" parent="MainVBox"]
+custom_minimum_size = Vector2(520, 85)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_o1cr5")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MainVBox/KeyInfo"]
+custom_minimum_size = Vector2(520, 85)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_kmgpx")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainVBox/KeyInfo/NinePatchRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.09
+anchor_right = 0.98
+anchor_bottom = 0.93
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainVBox/KeyInfo/NinePatchRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="MoneyLabel" type="Label" parent="MainVBox/KeyInfo/NinePatchRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Money: 50,000.00"
+label_settings = SubResource("LabelSettings_cmtxr")
+
+[node name="DateLabel" type="Label" parent="MainVBox/KeyInfo/NinePatchRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Year 1, Spr, Mon"
+label_settings = SubResource("LabelSettings_cmtxr")
+horizontal_alignment = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MainVBox/KeyInfo/NinePatchRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainVBox/KeyInfo/NinePatchRect/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Popularity"
+label_settings = SubResource("LabelSettings_w1k38")
+
+[node name="PopularityBar" type="ProgressBar" parent="MainVBox/KeyInfo/NinePatchRect/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_ipoew")
+theme_override_styles/fill = SubResource("StyleBoxFlat_c8o64")
+value = 50.0
+show_percentage = false
+
+[node name="PointsLabel" type="Label" parent="MainVBox/KeyInfo/NinePatchRect/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Points: XX"
+label_settings = SubResource("LabelSettings_cmtxr")
+horizontal_alignment = 2
+
+[node name="Container" type="Container" parent="MainVBox/KeyInfo/NinePatchRect/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="Label2" type="Label" parent="MainVBox/KeyInfo/NinePatchRect/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Experience"
+label_settings = SubResource("LabelSettings_w1k38")
+
+[node name="ExperienceBar" type="ProgressBar" parent="MainVBox/KeyInfo/NinePatchRect/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_2pd8d")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qfwsv")
+max_value = 1.0
+value = 0.4
+show_percentage = false
+
+[node name="OtherInfo" type="Panel" parent="MainVBox"]
+custom_minimum_size = Vector2(520, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_o1cr5")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MainVBox/OtherInfo"]
+custom_minimum_size = Vector2(520, 60)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_kmgpx")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainVBox/OtherInfo/NinePatchRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.015
+anchor_top = 0.05
+anchor_right = 0.905
+anchor_bottom = 0.52
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SaleInfoLabel" type="Label" parent="MainVBox/OtherInfo/NinePatchRect/VBoxContainer"]
+layout_mode = 2
+text = "Sale info"
+label_settings = SubResource("LabelSettings_62iu6")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainVBox/OtherInfo/NinePatchRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="TimerLabel" type="Label" parent="MainVBox/OtherInfo/NinePatchRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Time"
+label_settings = SubResource("LabelSettings_cmtxr")
+horizontal_alignment = 2
+
+[node name="Label" type="Label" parent="MainVBox/OtherInfo/NinePatchRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="Space1" type="Container" parent="MainVBox"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="MenuContainer" type="BoxContainer" parent="MainVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Container" type="Container" parent="MainVBox/MenuContainer"]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="MainVBox/MenuContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+tab_alignment = 1
+
+[node name="Main" type="TabBar" parent="MainVBox/MenuContainer/TabContainer"]
+layout_mode = 2
+tab_alignment = 1
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainVBox/MenuContainer/TabContainer/Main"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container" type="Container" parent="MainVBox/MenuContainer/TabContainer/Main/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainVBox/MenuContainer/TabContainer/Main/VBoxContainer"]
+layout_mode = 2
+
+[node name="Container" type="Container" parent="MainVBox/MenuContainer/TabContainer/Main/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+
+[node name="SceneView" type="Panel" parent="MainVBox/MenuContainer/TabContainer/Main/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(510, 350)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_prj7o")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MainVBox/MenuContainer/TabContainer/Main/VBoxContainer/HBoxContainer/SceneView"]
+custom_minimum_size = Vector2(510, 350)
+layout_direction = 1
+layout_mode = 1
+offset_right = 520.0
+offset_bottom = 360.0
+
+[node name="SubViewport" type="SubViewport" parent="MainVBox/MenuContainer/TabContainer/Main/VBoxContainer/HBoxContainer/SceneView/SubViewportContainer"]
+handle_input_locally = false
+mesh_lod_threshold = 0.0
+canvas_item_default_texture_filter = 0
+size = Vector2i(510, 350)
+size_2d_override = Vector2i(520, 360)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Park" parent="MainVBox/MenuContainer/TabContainer/Main/VBoxContainer/HBoxContainer/SceneView/SubViewportContainer/SubViewport" instance=ExtResource("3_1batx")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -520.0
+offset_right = 0.0
+grow_horizontal = 0
+
+[node name="Container2" type="Container" parent="MainVBox/MenuContainer/TabContainer/Main/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainVBox/MenuContainer/TabContainer/Main/VBoxContainer"]
+layout_mode = 2
+text = "asdfe"
+
+[node name="Stock" type="TabBar" parent="MainVBox/MenuContainer/TabContainer"]
+visible = false
+layout_mode = 2
+tab_alignment = 1
+metadata/_tab_index = 1
+
+[node name="Stock" parent="MainVBox/MenuContainer/TabContainer/Stock" instance=ExtResource("4_anp78")]
+layout_mode = 1
+
+[node name="Coffees" type="TabBar" parent="MainVBox/MenuContainer/TabContainer"]
+visible = false
+layout_mode = 2
+tab_alignment = 1
+metadata/_tab_index = 2
+
+[node name="Coffees" parent="MainVBox/MenuContainer/TabContainer/Coffees" instance=ExtResource("5_8nuhg")]
+layout_mode = 1
+
+[node name="Stand" type="TabBar" parent="MainVBox/MenuContainer/TabContainer"]
+visible = false
+layout_mode = 2
+tab_alignment = 1
+metadata/_tab_index = 4
+
+[node name="Stands" parent="MainVBox/MenuContainer/TabContainer/Stand" instance=ExtResource("7_ajitj")]
+layout_mode = 1
+
+[node name="Marketing" type="TabBar" parent="MainVBox/MenuContainer/TabContainer"]
+visible = false
+layout_mode = 2
+tab_alignment = 1
+metadata/_tab_index = 5
+
+[node name="Marketing" parent="MainVBox/MenuContainer/TabContainer/Marketing" instance=ExtResource("7_scda8")]
+layout_mode = 1
+
+[node name="Skills" type="TabBar" parent="MainVBox/MenuContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Skills" parent="MainVBox/MenuContainer/TabContainer/Skills" instance=ExtResource("8_41p4d")]
+layout_mode = 1
+
+[node name="Container2" type="Container" parent="MainVBox/MenuContainer"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="Space2" type="Container" parent="MainVBox"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="MainVBox"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_stretch_ratio = 0.35
+theme_override_font_sizes/font_size = 24
+text = "Start Day"
+
+[node name="Space4" type="Container" parent="MainVBox"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="DayTimer" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
+[connection signal="pressed" from="MainVBox/StartButton" to="." method="_on_start_button_pressed"]
