@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://crpb0hhm2c5mk"]
+[gd_scene load_steps=15 format=3 uid="uid://crpb0hhm2c5mk"]
 
 [ext_resource type="Script" path="res://Scenes/Coffees/coffee_container.gd" id="1_qbw3s"]
-[ext_resource type="Texture2D" uid="uid://baox2p2byac7p" path="res://Assets/Coffee-types.png" id="2_ppwna"]
+[ext_resource type="Texture2D" uid="uid://dt3jixc704hr1" path="res://Assets/Coffee_Sprites.png" id="2_m66se"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mkj8t"]
 bg_color = Color(0.835294, 0.909804, 0.952941, 1)
@@ -12,32 +12,65 @@ border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_8kyih"]
-font_size = 12
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rl85y"]
+font_size = 18
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_yc0u1"]
-font_size = 12
+font_size = 18
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_m7day"]
-font_size = 12
+font_size = 18
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2kfi2"]
-font_size = 12
+font_size = 18
 font_color = Color(0, 0, 0, 1)
 
-[node name="CoffeeContainer" type="Panel" node_paths=PackedStringArray("name_label", "coffee_icon", "price_label", "level_label", "upgrade_button", "special_toggle", "specials")]
-custom_minimum_size = Vector2(150, 180)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1xoni"]
+bg_color = Color(0.835294, 0.909804, 0.952941, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.321088, 0.388702, 0.500079, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rumfm"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ax2ai"]
+font_size = 18
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6o7oe"]
+font_size = 18
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wb2y8"]
+font_size = 18
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_g0qc0"]
+font_size = 18
+font_color = Color(0, 0, 0, 1)
+
+[node name="CoffeeContainer" type="PanelContainer" node_paths=PackedStringArray("name_label", "coffee_icon", "price_label", "level_label", "upgrade_button", "special_toggle", "specials", "unlock_mask", "unlock_button")]
+custom_minimum_size = Vector2(235, 275)
+layout_direction = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -345.0
-offset_top = -560.0
-offset_right = -195.0
-offset_bottom = -400.0
+offset_left = -117.5
+offset_top = -137.5
+offset_right = 117.5
+offset_bottom = 137.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -50,14 +83,12 @@ level_label = NodePath("CoffeeContainer/CoffeeLevel/Label")
 upgrade_button = NodePath("CoffeeContainer/CoffeeLevel/UpgradeButton")
 special_toggle = NodePath("CoffeeContainer/SelectSpecial/CheckButton")
 specials = NodePath("CoffeeContainer/SelectSpecial")
+unlock_mask = NodePath("Unlock_Mask")
+unlock_button = NodePath("Unlock_Mask/CoffeeContainer/CoffeeLevel/UnlockButton")
 
 [node name="CoffeeContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+theme_override_constants/separation = 1
 
 [node name="Container" type="Container" parent="CoffeeContainer"]
 custom_minimum_size = Vector2(10, 5)
@@ -65,20 +96,23 @@ layout_mode = 2
 
 [node name="CoffeeImage" type="HBoxContainer" parent="CoffeeContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 0
 
+[node name="Container" type="Container" parent="CoffeeContainer/CoffeeImage"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
 [node name="BoxContainer" type="BoxContainer" parent="CoffeeContainer/CoffeeImage"]
-custom_minimum_size = Vector2(48, 48)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="CoffeeContainer/CoffeeImage/BoxContainer"]
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("2_ppwna")
+scale = Vector2(2, 2)
+texture = ExtResource("2_m66se")
 centered = false
-hframes = 4
+hframes = 6
 vframes = 2
 
 [node name="Label" type="Label" parent="CoffeeContainer/CoffeeImage"]
@@ -87,9 +121,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Coffee Name"
 label_settings = SubResource("LabelSettings_8kyih")
-horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="Container2" type="Container" parent="CoffeeContainer/CoffeeImage"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
 
 [node name="CoffeeText" type="VBoxContainer" parent="CoffeeContainer"]
 layout_mode = 2
@@ -100,7 +137,7 @@ size_flags_vertical = 0
 layout_mode = 2
 size_flags_vertical = 1
 text = "Price: $2.50"
-label_settings = SubResource("LabelSettings_8kyih")
+label_settings = SubResource("LabelSettings_rl85y")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -122,7 +159,7 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(36, 0)
 layout_mode = 2
 mouse_filter = 1
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 16
 text = "Upgrade"
 
 [node name="RecipeText" type="HBoxContainer" parent="CoffeeContainer"]
@@ -158,5 +195,140 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
+[node name="Container2" type="Container" parent="CoffeeContainer"]
+custom_minimum_size = Vector2(10, 5)
+layout_mode = 2
+
+[node name="Unlock_Mask" type="PanelContainer" parent="."]
+visible = false
+layout_direction = 1
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1xoni")
+
+[node name="CoffeeContainer" type="VBoxContainer" parent="Unlock_Mask"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="Container" type="Container" parent="Unlock_Mask/CoffeeContainer"]
+custom_minimum_size = Vector2(10, 50)
+layout_mode = 2
+
+[node name="CoffeeImage" type="HBoxContainer" parent="Unlock_Mask/CoffeeContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Container" type="Container" parent="Unlock_Mask/CoffeeContainer/CoffeeImage"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="Unlock_Mask/CoffeeContainer/CoffeeImage"]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Unlock_Mask/CoffeeContainer/CoffeeImage/BoxContainer"]
+scale = Vector2(2, 2)
+texture = ExtResource("2_m66se")
+centered = false
+hframes = 6
+vframes = 2
+
+[node name="Label" type="Label" parent="Unlock_Mask/CoffeeContainer/CoffeeImage"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "???
+
+"
+label_settings = SubResource("LabelSettings_rumfm")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Container2" type="Container" parent="Unlock_Mask/CoffeeContainer/CoffeeImage"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="CoffeeText" type="VBoxContainer" parent="Unlock_Mask/CoffeeContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Price" type="Label" parent="Unlock_Mask/CoffeeContainer/CoffeeText"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 1
+text = "Price: $2.50"
+label_settings = SubResource("LabelSettings_ax2ai")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CoffeeLevel" type="HBoxContainer" parent="Unlock_Mask/CoffeeContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="Unlock_Mask/CoffeeContainer/CoffeeLevel"]
+visible = false
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Lv. 1"
+label_settings = SubResource("LabelSettings_6o7oe")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UnlockButton" type="Button" parent="Unlock_Mask/CoffeeContainer/CoffeeLevel"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 16
+text = "Unlock Coffee
+-1 KP"
+
+[node name="RecipeText" type="HBoxContainer" parent="Unlock_Mask/CoffeeContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="Unlock_Mask/CoffeeContainer/RecipeText"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Recipe:"
+label_settings = SubResource("LabelSettings_wb2y8")
+horizontal_alignment = 1
+
+[node name="RecipeContainer" type="HBoxContainer" parent="Unlock_Mask/CoffeeContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="SelectSpecial" type="HBoxContainer" parent="Unlock_Mask/CoffeeContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="Unlock_Mask/CoffeeContainer/SelectSpecial"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Special"
+label_settings = SubResource("LabelSettings_g0qc0")
+
+[node name="CheckButton" type="CheckButton" parent="Unlock_Mask/CoffeeContainer/SelectSpecial"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Container2" type="Container" parent="Unlock_Mask/CoffeeContainer"]
+custom_minimum_size = Vector2(10, 5)
+layout_mode = 2
+
 [connection signal="pressed" from="CoffeeContainer/CoffeeLevel/UpgradeButton" to="." method="_on_upgrade_button_pressed"]
 [connection signal="toggled" from="CoffeeContainer/SelectSpecial/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="pressed" from="Unlock_Mask/CoffeeContainer/CoffeeLevel/UnlockButton" to="." method="_on_unlock_button_pressed"]

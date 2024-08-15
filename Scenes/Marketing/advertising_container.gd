@@ -41,6 +41,7 @@ func _on_upgrade_button_pressed():
 	var cost = Global.advertisements[list[current_item_index]].cost
 	if Global.money >= cost:
 		Global.money -= cost
+		Global.report_td["marketing"] -= cost
 		Global.advertisements[list[current_item_index]].days_left = 7
 		update_ui()
 

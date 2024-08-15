@@ -12,11 +12,9 @@ border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_8kyih"]
-font_size = 13
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_hnwr6"]
-font_size = 12
 font_color = Color(0, 0, 0, 1)
 
 [node name="SocialMedia" type="PanelContainer" node_paths=PackedStringArray("likes_label", "followers_label", "total_posts", "post_button", "image_icon")]
@@ -43,10 +41,11 @@ layout_mode = 2
 size_flags_vertical = 4
 
 [node name="Space" type="Container" parent="MarginContainer/UpgradeImage"]
-custom_minimum_size = Vector2(25, 0)
+custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 
 [node name="UpgradeText" type="VBoxContainer" parent="MarginContainer/UpgradeImage"]
+custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
@@ -97,18 +96,18 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Space5" type="Container" parent="MarginContainer/UpgradeImage/UpgradeText/HBoxContainer/UpgradeLevel"]
-custom_minimum_size = Vector2(0, 10)
+custom_minimum_size = Vector2(0, 6)
 layout_mode = 2
 
 [node name="UpgradeButton" type="Button" parent="MarginContainer/UpgradeImage/UpgradeText/HBoxContainer/UpgradeLevel"]
 custom_minimum_size = Vector2(36, 0)
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 16
 text = "Create a post"
 
 [node name="Space2" type="Container" parent="MarginContainer/UpgradeImage"]
-custom_minimum_size = Vector2(25, 0)
+custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 
 [node name="Space4" type="Container" parent="MarginContainer"]

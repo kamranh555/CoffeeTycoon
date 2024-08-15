@@ -1,4 +1,4 @@
-extends Control
+extends PanelContainer
 
 var coffee_name = ""
 var recipe_container = preload("res://Scenes/Coffees/recipe_container.tscn")
@@ -10,6 +10,10 @@ var recipe_container = preload("res://Scenes/Coffees/recipe_container.tscn")
 @export var upgrade_button : Button
 @export var special_toggle: CheckButton
 @export var specials : HBoxContainer
+@export var unlock_mask : PanelContainer
+@export var unlock_button : Button
+
+signal update_coffee_list
 
 func _ready():
 	var container = $CoffeeContainer/RecipeContainer
@@ -42,6 +46,12 @@ func _process(_delta):
 	elif Global.specials_board == false :
 		specials.visible = false
 		custom_minimum_size.y = 160
+		
+	#To check if the coffee is unlocked
+	if Global.coffee_types[coffee_name].unlocked == true :
+		unlock_mask.visible = false
+	else : 
+		unlock_mask.visible = true
 
 func _on_upgrade_button_pressed():
 	if Global.points >= 1:
@@ -60,3 +70,10 @@ func _on_check_button_toggled(toggled_on):
 		Global.specials_list.append(coffee_name)
 	else : 
 		Global.specials_list.erase(coffee_name)
+
+
+func _on_unlock_button_pressed():
+	if Global.points > 0 :
+		Global.coffee_types[coffee_name].unlocked = true
+		Global.points -= 1
+		emit_signal("update_coffee_list")

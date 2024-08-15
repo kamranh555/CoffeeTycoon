@@ -47,6 +47,7 @@ var base_upgrades_limit = 3
 var current_upgrades_limit = 3
 
 #Impacted by upgrades:
+#region Upgrades
 var base_serve_time = 2.00
 var serving_time = 2.00
 var base_coffee_speed = 3.00
@@ -66,13 +67,19 @@ var social_media_followers = 0
 var total_posts = 0
 var current_post_likes = 0
 var ad_boost = 0
+#endregion
 
 #Upgradeable skills
 var skills = {}
 
+#region Variables to define databases
 var coffee_types: Dictionary = {}
+var unlocked_coffees: Array = []
+signal update_coffees_count
 var specials_list: Array = []
 var stock_items: Dictionary = {}
+var unlocked_stocks : Array = ["Cups"]
+signal update_stock_list
 var upgrades: Dictionary = {}
 var upgrades_owned: Dictionary = {}
 var current_stand = "Basic Cart"
@@ -82,6 +89,7 @@ var current_grinder = "None"
 var espresso_machines: Dictionary = {}
 var current_espresso_machine = "None"
 var advertisements: Dictionary = {}
+#endregion
 
 # Define demand modifiers based on season
 var demand_adjustments = {
@@ -92,35 +100,76 @@ var demand_adjustments = {
 		"Festive": {"Win": 1.0, "Spr": 0.1, "Sum": 0.1, "Fal": 0.25}
 }
 
+var report_td = {
+	"sales" : 0.0,
+	"tips" : 0.0,
+	"cost" : 0.0,
+	"permits" : 0.0,
+	"wasted" : 0.0,
+	"marketing" : 0.0,
+	"netprofit" : 0.0
+}
+
+var report_tw = {
+	"sales" : 0.0,
+	"tips" : 0.0,
+	"cost" : 0.0,
+	"permits" : 0.0,
+	"wasted" : 0.0,
+	"marketing" : 0.0,
+	"netprofit" : 0.0
+}
+
+var report_lw = {
+	"sales" : 0.0,
+	"tips" : 0.0,
+	"cost" : 0.0,
+	"permits" : 0.0,
+	"wasted" : 0.0,
+	"marketing" : 0.0,
+	"netprofit" : 0.0
+}
+
+
 func _ready():
 	#Initialize all the coffee types here
-	coffee_types["Espresso"] = CoffeeType.new("Espresso", [2.00, 2.25, 2.50, 2.75], 0, {"Coffee": 1, "Water": 1}, ["Espresso Machine"], true, 0, "Classic")
-	coffee_types["Americano"] = CoffeeType.new("Americano", [2.25, 2.50, 2.75, 3.00], 0, {"Coffee": 1, "Water": 3}, ["Espresso Machine"], true, 1, "Classic")
-	coffee_types["Cappuccino"] = CoffeeType.new("Cappuccino", [2.50, 2.75, 3.00, 3.5], 0, {"Coffee": 1,"Milk": 2, "Cream": 1}, ["Espresso Machine", "Milk Frother"], false, 2, "Classic")
-	coffee_types["Hot Chocolate"] = CoffeeType.new("Hot Chocolate", [3.00, 3.50, 4.00, 4.50], 0, {"Milk": 2, "Chocolate": 2}, ["Espresso Machine", "Milk Frother"], false, 3, "Festive")
-	coffee_types["Freddo"] = CoffeeType.new("Freddo", [3.00, 3.50, 4.00, 4.50], 0, {"Coffee": 1, "Milk": 2, "Ice": 2}, ["Espresso Machine", "Ice Machine"], false, 4, "Cold Brew")
-	coffee_types["Frappe"] = CoffeeType.new("Frappe", [3.50, 4.00, 4.50, 5.00], 0, {"Coffee": 1, "Milk": 1, "Ice Cream": 1, "Ice": 2, "Syrup": 1}, ["Espresso Machine"], false, 5, "Cold Brew")
-	coffee_types["Vanilla Latte"] = CoffeeType.new("Vanilla Latte", [3.50, 4.00, 4.50, 5.00], 0, {"Coffee": 1, "Milk": 2, "Syrup": 1}, ["Espresso Machine", "Milk Frother"], false, 6, "Fruity")
-	coffee_types["Irish Coffee"] = CoffeeType.new("Irish Coffee", [4.00, 4.75, 5.50, 6.50], 0, {"Coffee": 1, "Milk": 1, "Cream": 1, "Chocolate": 1, "Liquor": 1}, ["Espresso Machine", "Milk Frother", "Liquor License"], false, 7, "Festive")
+#region CoffeeTypes Data
+	coffee_types["Espresso"] = CoffeeType.new("Espresso", [2.00, 2.25, 2.50, 2.75], 0, {"Coffee": 1, "Water": 1}, ["Espresso Machine"], true, 0, "Classic", 0, 0)
+	coffee_types["Americano"] = CoffeeType.new("Americano", [2.25, 2.50, 2.75, 3.00], 0, {"Coffee": 1, "Water": 3}, ["Espresso Machine"], true, 2, "Classic", 0, 0)
+	coffee_types["Cappuccino"] = CoffeeType.new("Cappuccino", [2.50, 2.75, 3.00, 3.5], 0, {"Coffee": 1,"Milk": 2, "Cream": 1}, ["Espresso Machine", "Milk Frother"], false, 1, "Classic", 0, 0)
+	coffee_types["Hot Chocolate"] = CoffeeType.new("Hot Chocolate", [3.00, 3.50, 4.00, 4.50], 0, {"Milk": 2, "Chocolate": 2}, ["Espresso Machine", "Milk Frother"], false, 7, "Festive", 0, 0)
+	coffee_types["Freddo"] = CoffeeType.new("Freddo", [3.00, 3.50, 4.00, 4.50], 0, {"Coffee": 1, "Milk": 2, "Ice": 2}, ["Espresso Machine", "Ice Machine"], false, 8, "Cold Brew", 0, 0)
+	coffee_types["Frappe"] = CoffeeType.new("Frappe", [3.50, 4.00, 4.50, 5.00], 0, {"Coffee": 1, "Milk": 1, "Ice Cream": 1, "Ice": 2, "Syrup": 1}, ["Espresso Machine"], false, 10, "Cold Brew", 0, 0)
+	coffee_types["Vanilla Latte"] = CoffeeType.new("Vanilla Latte", [3.50, 4.00, 4.50, 5.00], 0, {"Coffee": 1, "Milk": 2, "Syrup": 1}, ["Espresso Machine", "Milk Frother"], false, 6, "Fruity", 0, 0)
+	coffee_types["Irish Coffee"] = CoffeeType.new("Irish Coffee", [4.00, 4.75, 5.50, 6.50], 0, {"Coffee": 1, "Milk": 1, "Cream": 1, "Chocolate": 1, "Liquor": 1}, ["Espresso Machine", "Milk Frother", "Liquor License"], false, 11, "Festive", 0, 0)
+
+#endregion
 
 	#Initialize all the stock items here ["Name"], [Cost], [QntyIncrease], [Quality], [Stock], [boolUnlocked], [CostPerUnit], [iconID]
+#region StockItems Data
 	stock_items["Coffee"] = StockItem.new("Coffee", 7.50, 5, 0, 15, true, 0.75, 0)
-	stock_items["Water"] = StockItem.new("Water", 1.00, 5, 0, 10, true, 0.10, 1)
+	stock_items["Water"] = StockItem.new("Water", 1.00, 5, 0, 10, true, 0.10, 3)
 	stock_items["Milk"] = StockItem.new("Milk", 2.50, 5, 0, 5, false, 0.25, 2)
-	stock_items["Cream"] = StockItem.new("Cream", 3.00, 5, 0, 5, false, 0.30, 3)
-	stock_items["Chocolate"] = StockItem.new("Chocolate", 5.00, 5, 0, 5, false, 0.50, 4)
-	stock_items["Ice Cream"] = StockItem.new("Ice Cream", 7.50, 5, 0, 5, false, 0.75, 5)
+	stock_items["Cream"] = StockItem.new("Cream", 3.00, 5, 0, 5, false, 0.30, 4)
+	stock_items["Chocolate"] = StockItem.new("Chocolate", 5.00, 5, 0, 5, false, 0.50, 5)
+	stock_items["Ice Cream"] = StockItem.new("Ice Cream", 7.50, 5, 0, 5, false, 0.75, 7)
 	stock_items["Ice"] = StockItem.new("Ice", 1.50, 5, 0, 5, false, 0.15, 6)
-	stock_items["Syrup"] = StockItem.new("Syrup", 5.00, 5, 0, 5, false, 0.50, 7)
-	stock_items["Liquor"] = StockItem.new("Liquor", 12.50, 5, 0, 5, false, 1.25, 7)
-	stock_items["Cups"] = StockItem.new("Cups", 2.00, 5, 0, 15, true, 0.20, 7)
+	stock_items["Syrup"] = StockItem.new("Syrup", 5.00, 5, 0, 5, false, 0.50, 9)
+	stock_items["Liquor"] = StockItem.new("Liquor", 12.50, 5, 0, 5, false, 1.25, 11)
+	stock_items["Cups"] = StockItem.new("Cups", 2.00, 5, 0, 15, true, 0.20, 1)
+
+#endregion
 
 	# Initialize upgrades here using a dictionary with the upgrade's name as the key
+#region Stand Data
 	stand["Basic Cart"] = Upgrade.new("Basic Cart", "Basic small cart for starters", "Upgrades_Limit", "Upgrades limit: ", 3, true, 0, 7)
 	stand["Bigger Cart"] = Upgrade.new("Bigger Cart", "Bigger cart space for more upgrades", "Upgrades_Limit", "Upgrades limit: ",6, false, 350, 7)
 	stand["Café Hut"] = Upgrade.new("Café Hut", "A spacious hut that offers more storage", "Upgrades_Limit", "Upgrades limit: ", 10, false, 600, 2)
 
+#endregion
+
 	# Initialize upgrades here using a dictionary with the upgrade's name as the key
+#region Upgrades Data
 	upgrades["Ice Maker"] = Upgrade.new("Ice Maker", "Creates ice everyday", "Create_Ice", "Ice per day: +",25, false, 100, 3)
 	upgrades["Water Filter"] = Upgrade.new("Water Filter", "Filter the tap water and save cost", "Create_Water", "Water per day: +", 25, false, 100, 2)
 	upgrades["Refrigerator"] = Upgrade.new("Refrigerator", "Prevents milk and cream from expiring", "Refrigerate", "Refridgeration", 1, false, 200, 3)
@@ -134,6 +183,9 @@ func _ready():
 	upgrades["Storage Shelf"] = Upgrade.new("Storage Shelf", "Increases stock storage size", "Stock_Limit", "Stock storage limit: +", 50, false, 300, 3)
 	upgrades["Seatings"] = Upgrade.new("Seatings", "Allows customers to sit and relax (tips)", "Seatings", "Seatings", 1, false, 400, 3)
 
+#endregion
+
+#region Equipment Data
 	grinders["None"] = Equipment.new("None", "Just use instant coffee", 0, 0, 0, 0)
 	grinders["Basic Coffee Grinder"] = Equipment.new("Basic Coffee Grinder", "A basic grinder that keeps freshness by grinding your own coffee", 1, 0, 150, 1)
 	grinders["Advanced Coffee Grinder"] = Equipment.new("Advanced Coffee Grinder", "An advanced grinder that improves quality and is faster",  2, 0, 350, 2)
@@ -142,15 +194,22 @@ func _ready():
 	espresso_machines["Basic Espresso Machine"] = Equipment.new("Basic Espresso Machine", "Prepare coffee faster", 0, 1, 200, 1)
 	espresso_machines["Advanced Espresso Machine"] = Equipment.new("Advanced Espresso Machine", "A top of the line machine that keeps consistency",  0, 2, 450, 2)
 
+#endregion
+
+#region Advertising Data
 	advertisements["Leaflets"] = Advertisement.new("Leaflets", "Distribute leaflets in the neighbourhood", 5.00, 50, 0, 0)
 	advertisements["Local newspaper"] = Advertisement.new("Local newspaper", "Advertise in your local newspaper", 10.00, 75, 1, 0)
 	advertisements["Social media ads"] = Advertisement.new("Social media ads", "Buy ad campaign for popular social media platforms", 15.00, 125, 2, 0)
 	advertisements["Billboards"] = Advertisement.new("Billboards", "Advertise on billboards across major public transport", 20.00, 200, 3, 0)
 
+#endregion
+
+#region Skills Data
 	skills["Barista"] = { "Name": "Barista", "Level": 0}
 	skills["Marketing"] = { "Name": "Marketing", "Level": 0}
 	skills["Service"] = { "Name": "Service", "Level": 0}
 
+#endregion
 
 func purchase_ingredient(ingredient: String, quantity: int) -> bool:
 	var total_cost = stock_items[ingredient].cost * quantity / stock_items[ingredient].pack_quantity
@@ -167,6 +226,11 @@ func format_cash(amount: float) -> String:
 	var integer_part = parts[0]
 	var decimal_part = parts[1]
 
+	# Check for negative sign
+	var is_negative = integer_part.begins_with("-")
+	if is_negative:
+		integer_part = integer_part.substr(1, integer_part.length() - 1)
+
 	# Add commas
 	var with_commas = ""
 	var count = 0
@@ -176,29 +240,54 @@ func format_cash(amount: float) -> String:
 		if count % 3 == 0 and i != 0:
 			with_commas = "," + with_commas
 
-	return "$" + with_commas + "." + decimal_part
+	# Add the negative sign back if necessary
+	if is_negative:
+		#with_commas = "-" + with_commas
+		return "-$" + with_commas + "." + decimal_part
+	
+	else :
+		return "$" + with_commas + "." + decimal_part
 
 
+#func format_cash(amount: float) -> String:
+	## Convert to string with two decimal places
+	#var formatted = "%.2f" % amount
+	#var parts = formatted.split(".")
+	#var integer_part = parts[0]
+	#var decimal_part = parts[1]
+#
+	## Add commas
+	#var with_commas = ""
+	#var count = 0
+	#for i in range(integer_part.length() - 1, -1, -1):
+		#count += 1
+		#with_commas = integer_part[i] + with_commas
+		#if count % 3 == 0 and i != 0:
+			#with_commas = "," + with_commas
+#
+	#return "$" + with_commas + "." + decimal_part
 
 func create_ice() :
 	if upgrades_owned.has("Ice Maker") && stock_items["Ice"].stock < 25:
 		stock_items["Ice"].stock += upgrades_owned["Ice Maker"].bonus
 		if stock_items["Ice"].stock > max_stock_capacity :
 			stock_items["Ice"].stock = max_stock_capacity
-		
+
 func create_water() :
 	if upgrades_owned.has("Water Filter") :
 		stock_items["Water"].stock += upgrades_owned["Water Filter"].bonus
 		if stock_items["Water"].stock > max_stock_capacity :
 			stock_items["Water"].stock = max_stock_capacity
-		
+
 func has_refridgerator() :
+	
+	var exp_items = ["Milk", "Cream", "Ice Cream", "Ice"]
+	
 	if upgrades_owned.has("Refrigerator") == false :
-		stock_items["Milk"].stock = 0
-		stock_items["Cream"].stock = 0
-		stock_items["Ice Cream"].stock = 0
-		stock_items["Ice"].stock = 0
-		
+		for i in exp_items : 
+			report_td["wasted"] -= (float(stock_items[i].stock) / float(stock_items[i].pack_quantity) * float(stock_items[i].cost))
+			stock_items[i].stock = 0
+
 func increase_attraction(upgrade) :
 	if upgrades_owned[upgrade].bonus_type == "Attraction" :
 		attraction += upgrades_owned[upgrade].bonus
@@ -207,7 +296,7 @@ func increase_queue_size(upgrade) :
 	if upgrades_owned[upgrade].bonus_type == "Queue_Size":
 		queue_limit += upgrades_owned[upgrade].bonus
 		rain_queue_limit += upgrades_owned[upgrade].bonus
-		
+
 func rain_protection(upgrade) :
 	if upgrades_owned[upgrade].bonus_type == "Rain_Queue_Size":
 		rain_queue_limit += upgrades_owned[upgrade].bonus
@@ -216,7 +305,6 @@ func faster_service(upgrade) :
 	if upgrades_owned[upgrade].bonus_type == "Service_Speed":
 		serving_time -= upgrades_owned[upgrade].bonus
 
-# Function to increase stock capacity
 func increase_stock_capacity(upgrade):
 	if upgrades_owned[upgrade].bonus_type == "Stock_Limit":
 		max_stock_capacity += upgrades_owned[upgrade].bonus
@@ -224,8 +312,7 @@ func increase_stock_capacity(upgrade):
 func specials_board_purchased(upgrade):
 	if upgrades_owned[upgrade].bonus_type == "Specials_Board":
 		specials_board = true
-		
-	
+
 func calculate_coffee_quality(coffee_level) -> float:
 	var level = coffee_level * 10
 	var grinder = grinder_level * 10
@@ -268,4 +355,5 @@ func ad_boost_calculator():
 	for ad in advertisements :
 		if advertisements[ad].days_left > 0 :
 			ad_boost += advertisements[ad].bonus
+
 

@@ -12,20 +12,19 @@ border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_8kyih"]
-font_size = 14
+font_size = 20
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_hnwr6"]
-font_size = 12
+font_size = 15
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_m7day"]
-font_size = 14
 font_color = Color(0, 0, 0, 1)
 
 [node name="StandsContainer" type="PanelContainer"]
-offset_right = 536.0
-offset_bottom = 72.0
+offset_right = 474.0
+offset_bottom = 93.0
 grow_horizontal = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_mkj8t")
@@ -101,7 +100,7 @@ label_settings = SubResource("LabelSettings_m7day")
 custom_minimum_size = Vector2(36, 0)
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 16
 text = "$ 1,000.0
 Buy"
 

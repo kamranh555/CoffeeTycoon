@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://dn8kxk8pwvoqu"]
+
+[ext_resource type="Script" path="res://Scenes/Main/Overview/Coffees/coffee_sold_info.gd" id="1_mp1i1"]
+
+[node name="CoffeeSoldInfo" type="Control" node_paths=PackedStringArray("grid_container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mp1i1")
+grid_container = NodePath("GridContainer")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+columns = 7

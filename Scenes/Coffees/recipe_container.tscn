@@ -1,28 +1,27 @@
 [gd_scene load_steps=4 format=3 uid="uid://b514v0wib5ptp"]
 
-[ext_resource type="Texture2D" uid="uid://c5hn4dk32usf5" path="res://Assets/Coffee-igredients.png" id="1_b66wq"]
 [ext_resource type="Script" path="res://Scenes/Coffees/recipe_container.gd" id="1_sw8gv"]
+[ext_resource type="Texture2D" uid="uid://dfb8hb81ygwre" path="res://Assets/Supplies_Sprites.png" id="2_anx2r"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_83s8w"]
-font_size = 11
+font_size = 18
 font_color = Color(0, 0, 0, 1)
 
 [node name="RecipeContainer" type="HBoxContainer"]
-custom_minimum_size = Vector2(24, 16)
+custom_minimum_size = Vector2(44, 32)
 offset_right = 24.0
 offset_bottom = 16.0
 script = ExtResource("1_sw8gv")
 
-[node name="BoxContainer" type="BoxContainer" parent="."]
+[node name="BoxContainer" type="Container" parent="."]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="BoxContainer"]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_b66wq")
+texture = ExtResource("2_anx2r")
 centered = false
-hframes = 4
+hframes = 6
 vframes = 2
 
 [node name="Label" type="Label" parent="."]

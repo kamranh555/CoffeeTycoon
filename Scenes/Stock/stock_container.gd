@@ -1,4 +1,4 @@
-extends Control
+extends PanelContainer
 
 var ingredient_name = ""
 var purchase_quantity = 0

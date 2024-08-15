@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Stock/stock.gd" id="1_ew83q"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vtqkm"]
-font_size = 20
+font_size = 26
 
 [node name="Stock" type="Control" node_paths=PackedStringArray("grid_container")]
 layout_mode = 3
@@ -69,7 +69,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Container" type="Container" parent="Panel/NinePatchRect/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(3, 0)
+custom_minimum_size = Vector2(4, 0)
 layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel/NinePatchRect/VBoxContainer/HBoxContainer2"]
@@ -81,4 +81,6 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-columns = 3
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 8
+columns = 2

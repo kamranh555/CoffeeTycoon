@@ -1,0 +1,262 @@
+[gd_scene load_steps=5 format=3 uid="uid://mekkg2e0h3o5"]
+
+[ext_resource type="Script" path="res://Scenes/Report/profit_and_loss.gd" id="1_7nu66"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_udsi0"]
+draw_center = false
+border_width_bottom = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_4sw1e"]
+font_size = 18
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ehv0h"]
+draw_center = false
+border_width_top = 2
+
+[node name="ProfitAndLoss" type="PanelContainer" node_paths=PackedStringArray("sales_td", "sales_tw", "sales_lw", "tips_td", "tips_tw", "tips_lw", "cost_td", "cost_tw", "cost_lw", "permits_td", "permits_tw", "permits_lw", "wasted_td", "wasted_tw", "wasted_lw", "marketing_td", "marketing_tw", "marketing_lw", "netprofit_td", "netprofit_tw", "netprofit_lw")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_7nu66")
+sales_td = NodePath("Description/VBoxContainer2/SalesLabel")
+sales_tw = NodePath("Description/VBoxContainer3/SalesLabel")
+sales_lw = NodePath("Description/VBoxContainer4/SalesLabel")
+tips_td = NodePath("Description/VBoxContainer2/TipsLabel")
+tips_tw = NodePath("Description/VBoxContainer3/TipsLabel")
+tips_lw = NodePath("Description/VBoxContainer4/TipsLabel")
+cost_td = NodePath("Description/VBoxContainer2/CostLabel")
+cost_tw = NodePath("Description/VBoxContainer3/CostLabel")
+cost_lw = NodePath("Description/VBoxContainer4/CostLabel")
+permits_td = NodePath("Description/VBoxContainer2/PermitsLabel")
+permits_tw = NodePath("Description/VBoxContainer3/PermitsLabel")
+permits_lw = NodePath("Description/VBoxContainer4/PermitsLabel")
+wasted_td = NodePath("Description/VBoxContainer2/WastedLabel")
+wasted_tw = NodePath("Description/VBoxContainer3/WastedLabel")
+wasted_lw = NodePath("Description/VBoxContainer4/WastedLabel")
+marketing_td = NodePath("Description/VBoxContainer2/MarketingLabel")
+marketing_tw = NodePath("Description/VBoxContainer3/MarketingLabel")
+marketing_lw = NodePath("Description/VBoxContainer4/MarketingLabel")
+netprofit_td = NodePath("Description/VBoxContainer2/ProfitLabel")
+netprofit_tw = NodePath("Description/VBoxContainer3/ProfitLabel")
+netprofit_lw = NodePath("Description/VBoxContainer4/ProfitLabel")
+
+[node name="Description" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Description"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Description" type="Label" parent="Description/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_udsi0")
+text = " 
+ 
+"
+label_settings = SubResource("LabelSettings_4sw1e")
+
+[node name="SalesLabel" type="Label" parent="Description/VBoxContainer"]
+layout_mode = 2
+text = "Total Sales"
+label_settings = SubResource("LabelSettings_4sw1e")
+
+[node name="TipsLabel" type="Label" parent="Description/VBoxContainer"]
+layout_mode = 2
+text = "Tips Received"
+label_settings = SubResource("LabelSettings_4sw1e")
+
+[node name="CostLabel" type="Label" parent="Description/VBoxContainer"]
+layout_mode = 2
+text = "Sold Stock"
+label_settings = SubResource("LabelSettings_4sw1e")
+
+[node name="WastedLabel" type="Label" parent="Description/VBoxContainer"]
+layout_mode = 2
+text = "Wasted Stock"
+label_settings = SubResource("LabelSettings_4sw1e")
+
+[node name="PermitsLabel" type="Label" parent="Description/VBoxContainer"]
+layout_mode = 2
+text = "Permits"
+label_settings = SubResource("LabelSettings_4sw1e")
+
+[node name="MarketingLabel" type="Label" parent="Description/VBoxContainer"]
+layout_mode = 2
+text = "Marketing"
+label_settings = SubResource("LabelSettings_4sw1e")
+
+[node name="ProfitLabel" type="Label" parent="Description/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ehv0h")
+text = "Net Profit"
+label_settings = SubResource("LabelSettings_4sw1e")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Description"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+
+[node name="Description" type="Label" parent="Description/VBoxContainer2"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_udsi0")
+text = " 
+Today"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 1
+
+[node name="SalesLabel" type="Label" parent="Description/VBoxContainer2"]
+layout_mode = 2
+text = "10,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="TipsLabel" type="Label" parent="Description/VBoxContainer2"]
+layout_mode = 2
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="CostLabel" type="Label" parent="Description/VBoxContainer2"]
+layout_mode = 2
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="WastedLabel" type="Label" parent="Description/VBoxContainer2"]
+layout_mode = 2
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="PermitsLabel" type="Label" parent="Description/VBoxContainer2"]
+layout_mode = 2
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="MarketingLabel" type="Label" parent="Description/VBoxContainer2"]
+layout_mode = 2
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="ProfitLabel" type="Label" parent="Description/VBoxContainer2"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ehv0h")
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Description"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+
+[node name="Description" type="Label" parent="Description/VBoxContainer3"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_udsi0")
+text = "This
+Week
+"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 1
+
+[node name="SalesLabel" type="Label" parent="Description/VBoxContainer3"]
+layout_mode = 2
+text = "10,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="TipsLabel" type="Label" parent="Description/VBoxContainer3"]
+layout_mode = 2
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="CostLabel" type="Label" parent="Description/VBoxContainer3"]
+layout_mode = 2
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="WastedLabel" type="Label" parent="Description/VBoxContainer3"]
+layout_mode = 2
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="PermitsLabel" type="Label" parent="Description/VBoxContainer3"]
+layout_mode = 2
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="MarketingLabel" type="Label" parent="Description/VBoxContainer3"]
+layout_mode = 2
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="ProfitLabel" type="Label" parent="Description/VBoxContainer3"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ehv0h")
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="Description"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+
+[node name="Description" type="Label" parent="Description/VBoxContainer4"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_udsi0")
+text = "Last
+Week"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 1
+
+[node name="SalesLabel" type="Label" parent="Description/VBoxContainer4"]
+layout_mode = 2
+text = "10,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="TipsLabel" type="Label" parent="Description/VBoxContainer4"]
+layout_mode = 2
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="CostLabel" type="Label" parent="Description/VBoxContainer4"]
+layout_mode = 2
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="WastedLabel" type="Label" parent="Description/VBoxContainer4"]
+layout_mode = 2
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="PermitsLabel" type="Label" parent="Description/VBoxContainer4"]
+layout_mode = 2
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="MarketingLabel" type="Label" parent="Description/VBoxContainer4"]
+layout_mode = 2
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="ProfitLabel" type="Label" parent="Description/VBoxContainer4"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ehv0h")
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2

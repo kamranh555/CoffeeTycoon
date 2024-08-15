@@ -131,12 +131,16 @@ func _physics_process(delta):
 				if can_serve && person.serving_time >= total_serve_time :
 				# Deduct one cup for the sale
 					Global.stock_items["Cups"].stock -= 1
+					Global.report_td["cost"] -= (float(1) / float(Global.stock_items["Cups"].pack_quantity) * float(Global.stock_items["Cups"].cost))
 				
 				# Deduct the stock items from the stock items used
 					for ingredient in Global.coffee_types[person.coffee_choice].recipe:
 						Global.stock_items[ingredient].stock -= Global.coffee_types[person.coffee_choice].recipe[ingredient]
+						Global.report_td["cost"] -= (float(Global.coffee_types[person.coffee_choice].recipe[ingredient]) * float(Global.stock_items[ingredient].cost) / float(Global.stock_items[ingredient].pack_quantity))
 					Global.money += Global.coffee_types[person.coffee_choice].price[Global.coffee_types[person.coffee_choice].level]
+					Global.report_td["sales"] += Global.coffee_types[person.coffee_choice].price[Global.coffee_types[person.coffee_choice].level]
 					sale_info_label.text = ("Sold one " + person.coffee_choice)
+					Global.coffee_types[person.coffee_choice].daily_count += 1
 					person.served = true
 					person.state = 3
 					

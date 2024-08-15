@@ -1,8 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://by0kjcwwjujbe"]
+[gd_scene load_steps=4 format=3 uid="uid://by0kjcwwjujbe"]
 
 [ext_resource type="Script" path="res://Scenes/Coffees/coffees.gd" id="1_rkfed"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vtqkm"]
+font_size = 26
+
+[sub_resource type="LabelSettings" id="LabelSettings_hv3ju"]
 font_size = 20
 
 [node name="Coffees" type="Control" node_paths=PackedStringArray("specials_label", "grid_container")]
@@ -76,13 +79,14 @@ size_flags_horizontal = 4
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Specials Board"
+label_settings = SubResource("LabelSettings_hv3ju")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Panel/NinePatchRect/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Container" type="Container" parent="Panel/NinePatchRect/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(3, 0)
+custom_minimum_size = Vector2(4, 0)
 layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel/NinePatchRect/VBoxContainer/HBoxContainer2"]
@@ -94,4 +98,6 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-columns = 3
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 2

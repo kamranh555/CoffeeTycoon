@@ -12,15 +12,14 @@ border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_8kyih"]
-font_size = 15
+font_size = 20
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_b0unj"]
-font_size = 13
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_m7day"]
-font_size = 13
+font_size = 15
 font_color = Color(0, 0, 0, 1)
 
 [node name="AdvertisingContainer" type="PanelContainer" node_paths=PackedStringArray("item_name_label", "item_info_label", "back_button", "forward_button", "buy_button", "bonus_info_label", "display_image")]
@@ -62,7 +61,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Container" type="Container" parent="HBoxContainer/UpgradeContainer"]
-custom_minimum_size = Vector2(10, 5)
+custom_minimum_size = Vector2(10, 2)
 layout_mode = 2
 
 [node name="UpgradeImage" type="HBoxContainer" parent="HBoxContainer/UpgradeContainer"]
@@ -99,11 +98,12 @@ label_settings = SubResource("LabelSettings_8kyih")
 vertical_alignment = 1
 
 [node name="Info" type="Label" parent="HBoxContainer/UpgradeContainer/UpgradeImage/UpgradeText"]
-custom_minimum_size = Vector2(200, 44)
+custom_minimum_size = Vector2(200, 75)
 layout_mode = 2
 size_flags_vertical = 1
 text = "Information about the
-advertisement"
+advertisement
+..."
 label_settings = SubResource("LabelSettings_b0unj")
 autowrap_mode = 2
 justification_flags = 0
@@ -127,11 +127,15 @@ label_settings = SubResource("LabelSettings_m7day")
 autowrap_mode = 2
 
 [node name="UpgradeButton" type="Button" parent="HBoxContainer/UpgradeContainer/HBoxContainer"]
-custom_minimum_size = Vector2(36, 0)
+custom_minimum_size = Vector2(76, 54)
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 16
 text = "$ 1,000.0
 Buy"
+
+[node name="Container3" type="Container" parent="HBoxContainer/UpgradeContainer"]
+custom_minimum_size = Vector2(10, 2)
+layout_mode = 2
 
 [node name="Container3" type="Container" parent="HBoxContainer"]
 custom_minimum_size = Vector2(4, 0)

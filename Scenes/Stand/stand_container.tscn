@@ -12,15 +12,15 @@ border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_8kyih"]
-font_size = 14
+font_size = 18
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_hnwr6"]
-font_size = 12
+font_size = 15
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_m7day"]
-font_size = 14
+font_size = 15
 font_color = Color(0, 0, 0, 1)
 
 [node name="StandsContainer" type="PanelContainer"]
@@ -35,6 +35,7 @@ script = ExtResource("1_y8guy")
 layout_mode = 2
 
 [node name="Space3" type="Container" parent="MarginContainer"]
+custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 
 [node name="UpgradeImage" type="HBoxContainer" parent="MarginContainer"]
@@ -101,7 +102,7 @@ label_settings = SubResource("LabelSettings_m7day")
 custom_minimum_size = Vector2(36, 0)
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 16
 text = "$ 1,000.0
 Buy"
 
@@ -110,6 +111,7 @@ custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 
 [node name="Space4" type="Container" parent="MarginContainer"]
+custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 
 [connection signal="pressed" from="MarginContainer/UpgradeImage/UpgradeLevel/UpgradeButton" to="." method="_on_upgrade_button_pressed"]

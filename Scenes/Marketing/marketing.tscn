@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b4iysy12vr872" path="res://Scenes/Marketing/advertising_container.tscn" id="2_ipr40"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vtqkm"]
-font_size = 20
+font_size = 26
 
 [node name="Marketing" type="Control"]
 layout_mode = 3

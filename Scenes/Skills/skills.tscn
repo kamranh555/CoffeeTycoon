@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Skills/skills.gd" id="1_mb3pk"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vtqkm"]
-font_size = 20
+font_size = 26
 
 [node name="Skills" type="Control" node_paths=PackedStringArray("child_container")]
 layout_mode = 3
@@ -54,6 +54,10 @@ size_flags_horizontal = 4
 text = "SKILLS"
 label_settings = SubResource("LabelSettings_vtqkm")
 
+[node name="Container" type="Container" parent="Panel/NinePatchRect/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel/NinePatchRect/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -62,3 +66,4 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 10
