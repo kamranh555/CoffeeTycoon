@@ -15,7 +15,7 @@ font_size = 18
 [sub_resource type="LabelSettings" id="LabelSettings_7wr4g"]
 font_size = 18
 
-[node name="Stands" type="Control" node_paths=PackedStringArray("stand", "stand_container", "back_button", "upgrades_container", "header", "upgrades_header")]
+[node name="Stands" type="Control" node_paths=PackedStringArray("stand", "stand_container", "upgrades_container", "header", "upgrades_header")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,135 +23,109 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2154c")
-stand = NodePath("Panel/NinePatchRect/VBoxContainer/VBoxContainer/StandsContainer")
-stand_container = NodePath("Panel/NinePatchRect/VBoxContainer/VBoxContainer")
-back_button = NodePath("Panel/NinePatchRect/VBoxContainer/BackButton")
-upgrades_container = NodePath("Panel/NinePatchRect/VBoxContainer/VBoxContainer/UpgradesContainer")
-header = NodePath("Panel/NinePatchRect/VBoxContainer/Label")
-upgrades_header = NodePath("Panel/NinePatchRect/VBoxContainer/VBoxContainer/UpgradesHeading")
+stand = NodePath("NinePatchRect/VBoxContainer/VBoxContainer/StandsContainer")
+stand_container = NodePath("NinePatchRect/VBoxContainer/VBoxContainer")
+upgrades_container = NodePath("NinePatchRect/VBoxContainer/VBoxContainer/UpgradesContainer")
+header = NodePath("NinePatchRect/VBoxContainer/Label")
+upgrades_header = NodePath("NinePatchRect/VBoxContainer/VBoxContainer/UpgradesHeading")
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="NinePatchRect" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 543.0
+offset_bottom = 622.0
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-patch_margin_left = 8
-patch_margin_top = 8
-patch_margin_right = 8
-patch_margin_bottom = 8
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/NinePatchRect"]
-layout_direction = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 16.0
-offset_top = 16.0
-offset_right = -16.0
-offset_bottom = -16.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="Panel/NinePatchRect/VBoxContainer"]
+[node name="Container" type="Container" parent="NinePatchRect"]
+custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
-size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect"]
+layout_mode = 2
+
+[node name="Container" type="Container" parent="NinePatchRect/VBoxContainer"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
 text = "STAND"
 label_settings = SubResource("LabelSettings_vtqkm")
+horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/NinePatchRect/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="StandHeading" type="Label" parent="Panel/NinePatchRect/VBoxContainer/VBoxContainer"]
+[node name="StandHeading" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Current stand info:"
 label_settings = SubResource("LabelSettings_0mtml")
 
-[node name="StandsContainer" parent="Panel/NinePatchRect/VBoxContainer/VBoxContainer" instance=ExtResource("2_iq70m")]
+[node name="StandsContainer" parent="NinePatchRect/VBoxContainer/VBoxContainer" instance=ExtResource("2_iq70m")]
 layout_mode = 2
 
-[node name="Space" type="Container" parent="Panel/NinePatchRect/VBoxContainer/VBoxContainer"]
+[node name="Space" type="Container" parent="NinePatchRect/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="UpgradesHeading" type="Label" parent="Panel/NinePatchRect/VBoxContainer/VBoxContainer"]
+[node name="UpgradesHeading" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Upgrades owned:"
 label_settings = SubResource("LabelSettings_0mtml")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/NinePatchRect/VBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Space2" type="Container" parent="Panel/NinePatchRect/VBoxContainer/VBoxContainer"]
+[node name="Space2" type="Container" parent="NinePatchRect/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="UpgradesContainer" parent="Panel/NinePatchRect/VBoxContainer/VBoxContainer" instance=ExtResource("4_w1dp0")]
+[node name="UpgradesContainer" parent="NinePatchRect/VBoxContainer/VBoxContainer" instance=ExtResource("4_w1dp0")]
 layout_mode = 2
 size_flags_horizontal = 1
 size_flags_vertical = 4
 
-[node name="Space4" type="Container" parent="Panel/NinePatchRect/VBoxContainer/VBoxContainer"]
+[node name="Space4" type="Container" parent="NinePatchRect/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="Panel/NinePatchRect/VBoxContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "EQUIPMENT"
 label_settings = SubResource("LabelSettings_vtqkm")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/NinePatchRect/VBoxContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="StandHeading2" type="Label" parent="Panel/NinePatchRect/VBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="StandHeading2" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Espresso Machine"
 label_settings = SubResource("LabelSettings_7wr4g")
 
-[node name="StandsContainer2" parent="Panel/NinePatchRect/VBoxContainer/VBoxContainer/VBoxContainer" instance=ExtResource("4_dil70")]
+[node name="StandsContainer2" parent="NinePatchRect/VBoxContainer/VBoxContainer/VBoxContainer" instance=ExtResource("4_dil70")]
 layout_mode = 2
 
-[node name="Space3" type="Container" parent="Panel/NinePatchRect/VBoxContainer/VBoxContainer"]
+[node name="Space3" type="Container" parent="NinePatchRect/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/NinePatchRect/VBoxContainer/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="UpgradesHeading2" type="Label" parent="Panel/NinePatchRect/VBoxContainer/VBoxContainer/VBoxContainer2"]
+[node name="UpgradesHeading2" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Coffee Grinder"
 label_settings = SubResource("LabelSettings_7wr4g")
 
-[node name="StandsContainer3" parent="Panel/NinePatchRect/VBoxContainer/VBoxContainer/VBoxContainer2" instance=ExtResource("5_4tpye")]
+[node name="StandsContainer3" parent="NinePatchRect/VBoxContainer/VBoxContainer/VBoxContainer2" instance=ExtResource("5_4tpye")]
 layout_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel/NinePatchRect/VBoxContainer"]
+[node name="Container2" type="Container" parent="NinePatchRect"]
+custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
-size_flags_vertical = 3
-
-[node name="BackButton" type="Button" parent="Panel/NinePatchRect/VBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 0
-text = "Back"
-
-[connection signal="pressed" from="Panel/NinePatchRect/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

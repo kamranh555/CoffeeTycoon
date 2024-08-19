@@ -1,15 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://r4bom1to1bcn"]
+[gd_scene load_steps=6 format=3 uid="uid://r4bom1to1bcn"]
 
 [ext_resource type="Script" path="res://Scenes/Equipment/espresso_machine_container.gd" id="1_6mc0e"]
 [ext_resource type="Texture2D" uid="uid://baox2p2byac7p" path="res://Assets/Coffee-types.png" id="2_ah662"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mkj8t"]
-bg_color = Color(0.835294, 0.909804, 0.952941, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_8kyih"]
 font_size = 20
@@ -23,11 +15,11 @@ font_color = Color(0, 0, 0, 1)
 font_color = Color(0, 0, 0, 1)
 
 [node name="StandsContainer" type="PanelContainer"]
-offset_right = 474.0
-offset_bottom = 93.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 89.0
 grow_horizontal = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_mkj8t")
 script = ExtResource("1_6mc0e")
 
 [node name="MarginContainer" type="VBoxContainer" parent="."]
@@ -59,7 +51,7 @@ hframes = 4
 vframes = 2
 
 [node name="Space3" type="Container" parent="MarginContainer/UpgradeImage"]
-custom_minimum_size = Vector2(15, 0)
+custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 
 [node name="UpgradeText" type="VBoxContainer" parent="MarginContainer/UpgradeImage"]

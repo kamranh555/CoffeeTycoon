@@ -1,15 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://crpb0hhm2c5mk"]
+[gd_scene load_steps=16 format=3 uid="uid://crpb0hhm2c5mk"]
 
+[ext_resource type="Theme" uid="uid://k0vm0v88mupl" path="res://Assets/UI_Theme_Light.tres" id="1_fo5t2"]
 [ext_resource type="Script" path="res://Scenes/Coffees/coffee_container.gd" id="1_qbw3s"]
 [ext_resource type="Texture2D" uid="uid://dt3jixc704hr1" path="res://Assets/Coffee_Sprites.png" id="2_m66se"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mkj8t"]
-bg_color = Color(0.835294, 0.909804, 0.952941, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
+[ext_resource type="Texture2D" uid="uid://dphgcn1nrmr8o" path="res://Assets/UI_Selection/Pnl_Light_Mask.png" id="4_a63xv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8kyih"]
 font_size = 20
@@ -31,13 +25,8 @@ font_color = Color(0, 0, 0, 1)
 font_size = 18
 font_color = Color(0, 0, 0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1xoni"]
-bg_color = Color(0.835294, 0.909804, 0.952941, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.321088, 0.388702, 0.500079, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m8uld"]
+texture = ExtResource("4_a63xv")
 
 [sub_resource type="LabelSettings" id="LabelSettings_rumfm"]
 font_size = 20
@@ -74,7 +63,7 @@ offset_bottom = 137.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_mkj8t")
+theme = ExtResource("1_fo5t2")
 script = ExtResource("1_qbw3s")
 name_label = NodePath("CoffeeContainer/CoffeeImage/Label")
 coffee_icon = NodePath("CoffeeContainer/CoffeeImage/BoxContainer/Sprite2D")
@@ -204,7 +193,7 @@ visible = false
 layout_direction = 1
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_1xoni")
+theme_override_styles/panel = SubResource("StyleBoxTexture_m8uld")
 
 [node name="CoffeeContainer" type="VBoxContainer" parent="Unlock_Mask"]
 layout_mode = 2

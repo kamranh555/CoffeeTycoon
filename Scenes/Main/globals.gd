@@ -355,5 +355,3 @@ func ad_boost_calculator():
 	for ad in advertisements :
 		if advertisements[ad].days_left > 0 :
 			ad_boost += advertisements[ad].bonus
-
-

@@ -22,4 +22,3 @@ func _init(_name: String, _price: Array, _level: int, _recipe: Dictionary, _equi
 	category = _category
 	daily_count = _daily_count
 	weekly_count = _weekly_count
-

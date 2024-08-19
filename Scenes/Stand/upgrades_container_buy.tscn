@@ -1,15 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxm3mb3tcf34l"]
+[gd_scene load_steps=5 format=3 uid="uid://cxm3mb3tcf34l"]
 
 [ext_resource type="Script" path="res://Scenes/Stand/upgrades_container.gd" id="1_j2r01"]
 [ext_resource type="Texture2D" uid="uid://baox2p2byac7p" path="res://Assets/Coffee-types.png" id="2_chgpm"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mkj8t"]
-bg_color = Color(0.835294, 0.909804, 0.952941, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_8kyih"]
 font_size = 18
@@ -20,10 +12,11 @@ font_size = 15
 font_color = Color(0, 0, 0, 1)
 
 [node name="StandsContainer" type="PanelContainer" node_paths=PackedStringArray("item_name_label", "item_info_label", "back_button", "forward_button", "buy_button", "display_image")]
-offset_right = 480.0
-offset_bottom = 104.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 119.0
+grow_horizontal = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_mkj8t")
 script = ExtResource("1_j2r01")
 item_name_label = NodePath("HBoxContainer/UpgradeContainer/UpgradeImage/UpgradeText/Label")
 item_info_label = NodePath("HBoxContainer/UpgradeContainer/UpgradeImage/UpgradeText/Info")
@@ -77,7 +70,7 @@ hframes = 4
 vframes = 2
 
 [node name="Container3" type="Container" parent="HBoxContainer/UpgradeContainer/UpgradeImage"]
-custom_minimum_size = Vector2(6, 0)
+custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 
 [node name="UpgradeText" type="VBoxContainer" parent="HBoxContainer/UpgradeContainer/UpgradeImage"]
@@ -93,7 +86,6 @@ label_settings = SubResource("LabelSettings_8kyih")
 vertical_alignment = 1
 
 [node name="Info" type="Label" parent="HBoxContainer/UpgradeContainer/UpgradeImage/UpgradeText"]
-custom_minimum_size = Vector2(200, 44)
 layout_mode = 2
 size_flags_vertical = 1
 text = "Information

@@ -44,4 +44,3 @@ func _on_upgrade_button_pressed():
 		Global.report_td["marketing"] -= cost
 		Global.advertisements[list[current_item_index]].days_left = 7
 		update_ui()
-

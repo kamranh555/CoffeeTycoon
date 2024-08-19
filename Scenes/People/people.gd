@@ -6,7 +6,7 @@ extends CharacterBody2D
 @onready var queue = Global.people_queue # Reference to the global queue
 @onready var serve_position = spawner.find_child("ShopArea",true).position # Serve position in the shop
 @onready var coffee_list = Global.coffee_types.keys()
-@onready var sale_info_label = get_node("/root/Main/MainVBox/OtherInfo/NinePatchRect/VBoxContainer/SaleInfoLabel")
+@onready var sale_info_label = get_node("/root/Main/MainVBox/OtherInfo/VBoxContainer/SaleInfoLabel")
 
 @onready var total_serve_time = Global.serving_time + Global.coffee_speed
 signal start_serve_timers

@@ -2,14 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Stock/stock_container.gd" id="1_e1fdo"]
 [ext_resource type="Texture2D" uid="uid://dfb8hb81ygwre" path="res://Assets/Supplies_Sprites.png" id="2_66y78"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mkj8t"]
-bg_color = Color(0.835294, 0.909804, 0.952941, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
+[ext_resource type="Theme" uid="uid://k0vm0v88mupl" path="res://Assets/UI_Theme_Light.tres" id="3_geoml"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8kyih"]
 font_size = 20
@@ -27,24 +20,24 @@ font_color = Color(0, 0, 0, 1)
 font_size = 18
 font_color = Color(0, 0, 0, 1)
 
-[node name="StockContainer" type="PanelContainer" node_paths=PackedStringArray("name_label", "quantity_label", "stock_icon", "buy_quantity", "cost_label", "buy_button", "add_button", "less_button")]
-custom_minimum_size = Vector2(220, 170)
+[node name="StockContainer" type="Panel" node_paths=PackedStringArray("name_label", "quantity_label", "stock_icon", "buy_quantity", "cost_label", "buy_button", "add_button", "less_button")]
+custom_minimum_size = Vector2(220, 180)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -270.0
-offset_top = -480.0
-offset_right = -90.0
-offset_bottom = -330.0
+offset_left = -290.0
+offset_top = -495.0
+offset_right = -70.0
+offset_bottom = -315.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_mkj8t")
+theme = ExtResource("3_geoml")
 script = ExtResource("1_e1fdo")
 name_label = NodePath("StockContainer/VBoxContainer/HBoxContainer/ContainerStockText/Name")
 quantity_label = NodePath("StockContainer/VBoxContainer/HBoxContainer/ContainerStockText/Quantity")
@@ -57,6 +50,10 @@ less_button = NodePath("StockContainer/QuantityBuy/LessButton")
 
 [node name="StockContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 218.0
+offset_bottom = 178.0
 theme_override_constants/separation = 6
 
 [node name="Container" type="Container" parent="StockContainer"]
@@ -143,6 +140,7 @@ horizontal_alignment = 1
 [node name="BuyButton" type="Button" parent="StockContainer/CostBuyQuantity"]
 layout_mode = 2
 mouse_filter = 1
+theme = ExtResource("3_geoml")
 theme_override_font_sizes/font_size = 18
 text = "Buy"
 

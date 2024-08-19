@@ -1,17 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://mekkg2e0h3o5"]
+[gd_scene load_steps=8 format=3 uid="uid://mekkg2e0h3o5"]
 
 [ext_resource type="Script" path="res://Scenes/Report/profit_and_loss.gd" id="1_7nu66"]
+[ext_resource type="Texture2D" uid="uid://2r6tslwlq6j" path="res://Assets/UI_Selection/Pnl_Light.png" id="1_cehdb"]
+[ext_resource type="FontFile" uid="uid://cr6lemlgbkh0u" path="res://Assets/UI_Selection/Arial Bold.ttf" id="3_ap6v8"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8o8cu"]
+texture = ExtResource("1_cehdb")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_udsi0"]
 draw_center = false
 border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_4sw1e"]
+font = ExtResource("3_ap6v8")
 font_size = 18
+font_color = Color(0, 0, 0, 1)
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ehv0h"]
 draw_center = false
 border_width_top = 2
+border_color = Color(0, 0, 0, 1)
 
 [node name="ProfitAndLoss" type="PanelContainer" node_paths=PackedStringArray("sales_td", "sales_tw", "sales_lw", "tips_td", "tips_tw", "tips_lw", "cost_td", "cost_tw", "cost_lw", "permits_td", "permits_tw", "permits_lw", "wasted_td", "wasted_tw", "wasted_lw", "marketing_td", "marketing_tw", "marketing_lw", "netprofit_td", "netprofit_tw", "netprofit_lw")]
 anchors_preset = 15
@@ -21,6 +35,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_8o8cu")
 script = ExtResource("1_7nu66")
 sales_td = NodePath("Description/VBoxContainer2/SalesLabel")
 sales_tw = NodePath("Description/VBoxContainer3/SalesLabel")

@@ -13,17 +13,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mb3pk")
-child_container = NodePath("Panel/NinePatchRect/VBoxContainer/ScrollContainer/VBoxContainer")
+child_container = NodePath("NinePatchRect/VBoxContainer/ScrollContainer/VBoxContainer")
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Panel"]
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,7 +27,7 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/NinePatchRect"]
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect"]
 layout_direction = 1
 layout_mode = 1
 anchors_preset = -1
@@ -48,21 +40,21 @@ offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Panel/NinePatchRect/VBoxContainer"]
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "SKILLS"
 label_settings = SubResource("LabelSettings_vtqkm")
 
-[node name="Container" type="Container" parent="Panel/NinePatchRect/VBoxContainer"]
+[node name="Container" type="Container" parent="NinePatchRect/VBoxContainer"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel/NinePatchRect/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="NinePatchRect/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/NinePatchRect/VBoxContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
