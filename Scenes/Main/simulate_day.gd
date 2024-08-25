@@ -11,7 +11,7 @@ var queue_limit = Global.queue_limit
 @export var spawn_timer: Timer
 @onready var queue = Global.people_queue
 @export var spawner: Node2D
-@onready var shoparea = get_node("Park/Spawner/ShopArea")
+@onready var shoparea = get_node("Spawner/ShopArea")
 
 func _on_center_area_body_entered(body):
 	if body.state == 0 && body.wants_coffee :
@@ -38,12 +38,12 @@ func _on_shop_area_body_entered(body):
 			timer.start()
 
 func _on_destroy_1_body_entered(body):
-	body.queue_free()
 	people_list.erase(body)
+	body.queue_free()
 
 func _on_destroy_2_body_entered(body):
-	body.queue_free()
 	people_list.erase(body)
+	body.queue_free()
 
 func _ready():
 	pass
@@ -52,13 +52,18 @@ func _process(_delta):
 	
 	queue_limit = Global.queue_limit
 	
+	for people in people_list : 
+		if !is_instance_valid(people):
+			people_list.erase(people)
+	
 	if is_spawning == false :
 		spawn_timer.stop()
 		var all_served = all_people_served()
 		
 		if all_served == true :
 			for people in people_list :
-				people.speed = 50
+				if people != null :
+					people.speed = 50
 		
 
 func _on_spawn_frequency_timeout():
@@ -86,11 +91,13 @@ func _on_spawn_frequency_timeout():
 	
 func all_people_served():
 	for people in people_list :
-		if people.state <= 2 :
-			return false
+		if people != null :
+			if people.state <= 2 :
+				return false
 	return true
 	
 func on_start_serve_timers():
+
 	var progress_bar = serving_progress_bar.instantiate()
 	progress_bar.run_time = Global.coffee_speed
 	progress_bar.index = 0

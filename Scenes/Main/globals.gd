@@ -1,12 +1,12 @@
 extends Node
 
 # Global variables accessible across scripts
-var money = 500
+var money = 1000
 var base_demand = 25
 var popularity = 0
 var people_queue = []
 var stock_current = 0
-var points = 5
+var points = 10
 var experience = 0
 
 # Date and time
@@ -84,6 +84,9 @@ var upgrades: Dictionary = {}
 var upgrades_owned: Dictionary = {}
 var current_stand = "Basic Cart"
 var stand: Dictionary = {}
+var locations: Dictionary = {}
+signal update_location
+var current_location = 0
 var grinders: Dictionary = {}
 var current_grinder = "None"
 var espresso_machines: Dictionary = {}
@@ -157,7 +160,6 @@ func _ready():
 	stock_items["Syrup"] = StockItem.new("Syrup", 5.00, 5, 0, 5, false, 0.50, 9)
 	stock_items["Liquor"] = StockItem.new("Liquor", 12.50, 5, 0, 5, false, 1.25, 11)
 	stock_items["Cups"] = StockItem.new("Cups", 2.00, 5, 0, 15, true, 0.20, 1)
-
 #endregion
 
 	# Initialize upgrades here using a dictionary with the upgrade's name as the key
@@ -165,7 +167,6 @@ func _ready():
 	stand["Basic Cart"] = Upgrade.new("Basic Cart", "Basic small cart for starters", "Upgrades_Limit", "Upgrades limit: ", 3, true, 0, 7)
 	stand["Bigger Cart"] = Upgrade.new("Bigger Cart", "Bigger cart space for more upgrades", "Upgrades_Limit", "Upgrades limit: ",6, false, 350, 7)
 	stand["Café Hut"] = Upgrade.new("Café Hut", "A spacious hut that offers more storage", "Upgrades_Limit", "Upgrades limit: ", 10, false, 600, 2)
-
 #endregion
 
 	# Initialize upgrades here using a dictionary with the upgrade's name as the key
@@ -208,7 +209,14 @@ func _ready():
 	skills["Barista"] = { "Name": "Barista", "Level": 0}
 	skills["Marketing"] = { "Name": "Marketing", "Level": 0}
 	skills["Service"] = { "Name": "Service", "Level": 0}
+#endregion
 
+#region Locations Data
+	locations["Neighbourhood Block"] = Location.new("Neighbourhood Block", "A cozy residential area where you set up your coffee cart in a quiet backyard.", 10.00, true, true, {"Win": 0.25, "Spr": 0.25, "Sum": 0.25, "Fal": 0.25}, {"Weekday": 0.25, "Weekend": 0.50}, 0)
+	locations["Central Park"] = Location.new("Central Park", "A bustling park in the city center, popular with joggers and families.", 25.00, false, false, {"Win": 0.20, "Spr": 0.35, "Sum": 0.40, "Fal": 0.25}, {"Weekday": 0.30, "Weekend": 0.70}, 1)
+	#locations["Downtown"] = Location.new("Downtown", "The heart of the city, surrounded by offices and shopping centers.", 50.00, false, false, {"Win": 0.30, "Spr": 0.30, "Sum": 0.20, "Fal": 0.20}, {"Weekday": 0.60, "Weekend": 0.40}, 2)
+	#locations["Beach"] = Location.new("Beach", "A sunny spot by the sea, perfect for tourists and sunbathers.", 40.00, false, false, {"Win": 0.10, "Spr": 0.30, "Sum": 0.50, "Fal": 0.10}, {"Weekday": 0.20, "Weekend": 0.80}, 3)
+	#locations["Local Market"] = Location.new("Local Market", "A vibrant market where locals buy fresh produce and artisan goods.", 30.00, false, false, {"Win": 0.25, "Spr": 0.35, "Sum": 0.30, "Fal": 0.10}, {"Weekday": 0.50, "Weekend": 0.50}, 4)
 #endregion
 
 func purchase_ingredient(ingredient: String, quantity: int) -> bool:

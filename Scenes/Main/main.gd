@@ -1,8 +1,10 @@
 extends Control
 
-@export var scene_view : Control
+@export var sub_viewport : SubViewport
+@onready var locations_list : Array = sub_viewport.get_children()
+@onready var scene_view = sub_viewport.get_child(Global.current_location)
 
-@export var spawn_duration = 10  # Duration for spawning people
+@export var spawn_duration = 30  # Duration for spawning people
 var is_spawning = false  # Flag to control the spawning process
 
 @onready var day_timer = $DayTimer
@@ -24,6 +26,8 @@ func _ready():
 	experience_bar.value = Global.experience
 	update_weather()
 	update_date_label()
+	Global.connect("update_location", Callable(self, "update_location"))
+	Global.update_location.emit()
 
 func _process(_delta):
 	money_label.text = "Money: " + Global.format_cash(Global.money)
@@ -162,3 +166,15 @@ func _on_tab_container_tab_changed(tab):
 		start_button.text = "Main"
 	else : 
 		start_button.text = "Start Day"
+		
+
+
+
+func update_location():
+	var list_count = locations_list.size()
+	
+	for location in locations_list : 
+		location.set_visible(false)
+	
+	scene_view = sub_viewport.get_child(Global.current_location)
+	scene_view.set_visible(true)

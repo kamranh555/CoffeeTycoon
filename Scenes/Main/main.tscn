@@ -1,27 +1,18 @@
-[gd_scene load_steps=22 format=3 uid="uid://bqu8vwv7qkndr"]
+[gd_scene load_steps=17 format=3 uid="uid://bqu8vwv7qkndr"]
 
 [ext_resource type="Script" path="res://Scenes/Main/main.gd" id="1_4bokm"]
 [ext_resource type="Theme" uid="uid://k0vm0v88mupl" path="res://Assets/UI_Theme_Light.tres" id="2_nc41i"]
 [ext_resource type="PackedScene" uid="uid://c1wlypkhf1wmo" path="res://Scenes/Main/park.tscn" id="3_1batx"]
-[ext_resource type="FontFile" uid="uid://cr6lemlgbkh0u" path="res://Assets/UI_Selection/Arial Bold.ttf" id="3_86tfx"]
 [ext_resource type="Texture2D" uid="uid://boramfb7cege4" path="res://Assets/UI_Selection/Progress_Bar_Fill_Green.png" id="4_1ibga"]
 [ext_resource type="PackedScene" uid="uid://k4rau1oin7pq" path="res://Scenes/Stock/stock.tscn" id="4_anp78"]
 [ext_resource type="PackedScene" uid="uid://k2fxfbhtlsgn" path="res://Scenes/Main/Overview/Stock/current_stock_info.tscn" id="4_v30sl"]
 [ext_resource type="PackedScene" uid="uid://dn8kxk8pwvoqu" path="res://Scenes/Main/Overview/Coffees/coffee_sold_info.tscn" id="5_1t511"]
 [ext_resource type="PackedScene" uid="uid://by0kjcwwjujbe" path="res://Scenes/Coffees/coffees.tscn" id="5_8nuhg"]
+[ext_resource type="PackedScene" uid="uid://brsjl4rh4eue0" path="res://Scenes/Main/residential.tscn" id="5_y1aug"]
 [ext_resource type="PackedScene" uid="uid://dn5nip5qwoq1c" path="res://Scenes/Report/report.tscn" id="6_i74lr"]
 [ext_resource type="PackedScene" uid="uid://dyfu2aa5ov68s" path="res://Scenes/Stand/stand.tscn" id="7_ajitj"]
 [ext_resource type="PackedScene" uid="uid://dq1a2kmlshwdp" path="res://Scenes/Marketing/marketing.tscn" id="7_scda8"]
 [ext_resource type="PackedScene" uid="uid://wck1g40keou1" path="res://Scenes/Skills/skills.tscn" id="8_41p4d"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_cmtxr"]
-font = ExtResource("3_86tfx")
-font_size = 24
-font_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_w1k38"]
-font_size = 22
-font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5lojs"]
 texture = ExtResource("4_1ibga")
@@ -29,18 +20,6 @@ texture_margin_left = 8.0
 texture_margin_top = 5.0
 texture_margin_right = 8.0
 texture_margin_bottom = 5.0
-
-[sub_resource type="LabelSettings" id="LabelSettings_4r5u4"]
-font_size = 22
-font_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_62iu6"]
-font_size = 20
-font_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_jvrtu"]
-font_size = 20
-font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_prj7o"]
 draw_center = false
@@ -55,9 +34,9 @@ expand_margin_right = 6.0
 expand_margin_bottom = 6.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_xn6bg"]
-font_size = 18
+font_size = 30
 
-[node name="Main" type="Control" node_paths=PackedStringArray("scene_view", "money_label", "sale_info_label", "points_label", "start_button", "popularity_bar", "experience_bar", "timer_label", "tab_container", "date_label")]
+[node name="Main" type="Control" node_paths=PackedStringArray("sub_viewport", "money_label", "sale_info_label", "points_label", "start_button", "popularity_bar", "experience_bar", "timer_label", "tab_container", "date_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -67,7 +46,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_4bokm")
-scene_view = NodePath("MainVBox/MenuContainer/TabContainer/Main/VBoxContainer/SceneViewContainer/SceneView/SubViewportContainer/SubViewport/Park")
+sub_viewport = NodePath("MainVBox/MenuContainer/TabContainer/Main/VBoxContainer/SceneViewContainer/SceneView/SubViewportContainer/SubViewport")
 money_label = NodePath("MainVBox/KeyInfo/VBoxContainer/HBoxContainer/MoneyLabel")
 sale_info_label = NodePath("MainVBox/OtherInfo/VBoxContainer/SaleInfoLabel")
 points_label = NodePath("MainVBox/KeyInfo/VBoxContainer/HBoxContainer2/PointsLabel")
@@ -95,7 +74,6 @@ layout_mode = 2
 [node name="KeyInfo" type="Panel" parent="MainVBox"]
 custom_minimum_size = Vector2(520, 90)
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("2_nc41i")
 
@@ -116,13 +94,11 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Money: 50,000.00"
-label_settings = SubResource("LabelSettings_cmtxr")
 
 [node name="DateLabel" type="Label" parent="MainVBox/KeyInfo/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Year 1, Spr, Mon"
-label_settings = SubResource("LabelSettings_cmtxr")
 horizontal_alignment = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MainVBox/KeyInfo/VBoxContainer"]
@@ -131,7 +107,6 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MainVBox/KeyInfo/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "Pop: "
-label_settings = SubResource("LabelSettings_w1k38")
 
 [node name="PopularityBar" type="ProgressBar" parent="MainVBox/KeyInfo/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
@@ -152,7 +127,6 @@ size_flags_stretch_ratio = 0.15
 layout_mode = 2
 size_flags_horizontal = 4
 text = "KP: XX"
-label_settings = SubResource("LabelSettings_4r5u4")
 horizontal_alignment = 2
 
 [node name="Container" type="Container" parent="MainVBox/KeyInfo/VBoxContainer/HBoxContainer2"]
@@ -163,7 +137,6 @@ size_flags_stretch_ratio = 0.15
 [node name="Label2" type="Label" parent="MainVBox/KeyInfo/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "Exp:"
-label_settings = SubResource("LabelSettings_w1k38")
 
 [node name="ExperienceBar" type="ProgressBar" parent="MainVBox/KeyInfo/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
@@ -178,7 +151,6 @@ show_percentage = false
 [node name="OtherInfo" type="Panel" parent="MainVBox"]
 custom_minimum_size = Vector2(520, 70)
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 0
 theme = ExtResource("2_nc41i")
 
@@ -195,7 +167,6 @@ offset_bottom = 54.1
 [node name="SaleInfoLabel" type="Label" parent="MainVBox/OtherInfo/VBoxContainer"]
 layout_mode = 2
 text = "Sale info"
-label_settings = SubResource("LabelSettings_62iu6")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MainVBox/OtherInfo/VBoxContainer"]
 layout_mode = 2
@@ -204,7 +175,6 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Time"
-label_settings = SubResource("LabelSettings_jvrtu")
 horizontal_alignment = 2
 
 [node name="Label" type="Label" parent="MainVBox/OtherInfo/VBoxContainer"]
@@ -228,7 +198,6 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_nc41i")
-theme_override_font_sizes/font_size = 20
 tab_alignment = 1
 current_tab = 0
 all_tabs_in_front = true
@@ -248,18 +217,18 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Container" type="Container" parent="MainVBox/MenuContainer/TabContainer/Main/VBoxContainer"]
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 
 [node name="SceneViewContainer" type="HBoxContainer" parent="MainVBox/MenuContainer/TabContainer/Main/VBoxContainer"]
 layout_mode = 2
 
 [node name="Container" type="Container" parent="MainVBox/MenuContainer/TabContainer/Main/VBoxContainer/SceneViewContainer"]
-custom_minimum_size = Vector2(4, 0)
+custom_minimum_size = Vector2(2, 0)
 layout_mode = 2
 
 [node name="SceneView" type="Panel" parent="MainVBox/MenuContainer/TabContainer/Main/VBoxContainer/SceneViewContainer"]
-custom_minimum_size = Vector2(496, 350)
+custom_minimum_size = Vector2(680, 520)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -267,26 +236,26 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_prj7o")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="MainVBox/MenuContainer/TabContainer/Main/VBoxContainer/SceneViewContainer/SceneView"]
 clip_contents = true
+layout_direction = 1
 layout_mode = 0
-offset_right = 496.0
-offset_bottom = 350.0
+offset_right = 680.0
+offset_bottom = 460.0
 
 [node name="SubViewport" type="SubViewport" parent="MainVBox/MenuContainer/TabContainer/Main/VBoxContainer/SceneViewContainer/SceneView/SubViewportContainer"]
 handle_input_locally = false
 mesh_lod_threshold = 0.0
 canvas_item_default_texture_filter = 0
-size = Vector2i(496, 350)
-size_2d_override = Vector2i(496, 350)
+size = Vector2i(680, 520)
+size_2d_override = Vector2i(680, 520)
 size_2d_override_stretch = true
 render_target_update_mode = 4
 
+[node name="Residential" parent="MainVBox/MenuContainer/TabContainer/Main/VBoxContainer/SceneViewContainer/SceneView/SubViewportContainer/SubViewport" instance=ExtResource("5_y1aug")]
+scale = Vector2(2, 2)
+
 [node name="Park" parent="MainVBox/MenuContainer/TabContainer/Main/VBoxContainer/SceneViewContainer/SceneView/SubViewportContainer/SubViewport" instance=ExtResource("3_1batx")]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -520.0
-offset_right = 0.0
-grow_horizontal = 0
+visible = false
+scale = Vector2(2, 2)
 
 [node name="Container2" type="Container" parent="MainVBox/MenuContainer/TabContainer/Main/VBoxContainer"]
 custom_minimum_size = Vector2(0, 10)

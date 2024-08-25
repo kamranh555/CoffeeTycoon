@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=52 format=3 uid="uid://k0vm0v88mupl"]
+[gd_resource type="Theme" load_steps=53 format=3 uid="uid://k0vm0v88mupl"]
 
 [ext_resource type="FontFile" uid="uid://cr6lemlgbkh0u" path="res://Assets/UI_Selection/Arial Bold.ttf" id="1_exifh"]
 [ext_resource type="Texture2D" uid="uid://ckn6tufr15cw0" path="res://Assets/UI_Selection/Button_Pressed.png" id="2_u7mg3"]
@@ -28,6 +28,27 @@ texture_margin_top = 8.0
 texture_margin_right = 8.0
 texture_margin_bottom = 8.0
 modulate_color = Color(0.621524, 0.621524, 0.621524, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sqfgw"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j1jaa"]
 texture = ExtResource("3_pegh5")
@@ -226,10 +247,28 @@ texture_margin_right = 5.0
 texture_margin_bottom = 8.0
 
 [resource]
-default_font_size = 20
+default_font = ExtResource("1_exifh")
+default_font_size = 30
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
 Button/fonts/font = SubResource("FontVariation_40c6c")
 Button/styles/disabled = SubResource("StyleBoxTexture_xe22u")
-Button/styles/focus = null
+Button/styles/focus = SubResource("StyleBoxFlat_sqfgw")
 Button/styles/hover = SubResource("StyleBoxTexture_j1jaa")
 Button/styles/normal = SubResource("StyleBoxTexture_ppqsq")
 Button/styles/pressed = SubResource("StyleBoxTexture_awax8")
@@ -251,9 +290,9 @@ Panel/styles/panel = SubResource("StyleBoxTexture_asgxl")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_o5d8p")
 ProgressBar/styles/background = SubResource("StyleBoxTexture_jm6nl")
 ProgressBar/styles/fill = SubResource("StyleBoxTexture_lgn27")
-TabBar/font_sizes/font_size = 20
+TabBar/font_sizes/font_size = 30
 TabBar/fonts/font = SubResource("FontVariation_1ufhe")
-TabContainer/font_sizes/font_size = 20
+TabContainer/font_sizes/font_size = 28
 TabContainer/fonts/font = SubResource("FontVariation_52xud")
 TabContainer/icons/decrement = ExtResource("9_fsnnh")
 TabContainer/icons/decrement_highlight = ExtResource("9_fsnnh")

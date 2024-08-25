@@ -1,0 +1,158 @@
+[gd_scene load_steps=9 format=3 uid="uid://dyfu2aa5ov68s"]
+
+[ext_resource type="Script" path="res://Scenes/Stand/stand.gd" id="1_2154c"]
+[ext_resource type="PackedScene" uid="uid://qfb66ch5t7t8" path="res://Scenes/Stand/stand_container.tscn" id="2_iq70m"]
+[ext_resource type="PackedScene" uid="uid://r4bom1to1bcn" path="res://Scenes/Equipment/espresso_machines_container_buy.tscn" id="4_dil70"]
+[ext_resource type="PackedScene" uid="uid://cxm3mb3tcf34l" path="res://Scenes/Stand/upgrades_container_buy.tscn" id="4_w1dp0"]
+[ext_resource type="PackedScene" uid="uid://psobigdys7l6" path="res://Scenes/Equipment/coffee_grinder_container.tscn" id="5_4tpye"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vtqkm"]
+font_size = 26
+
+[sub_resource type="LabelSettings" id="LabelSettings_0mtml"]
+font_size = 18
+
+[sub_resource type="LabelSettings" id="LabelSettings_7wr4g"]
+font_size = 18
+
+[node name="Stands" type="Control" node_paths=PackedStringArray("stand", "stand_container", "upgrades_container", "header", "upgrades_header")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2154c")
+stand = NodePath("NinePatchRect/VBoxContainer/VBoxContainer/StandsContainer")
+stand_container = NodePath("NinePatchRect/VBoxContainer/VBoxContainer")
+upgrades_container = NodePath("NinePatchRect/VBoxContainer/VBoxContainer/UpgradesContainer")
+header = NodePath("NinePatchRect/VBoxContainer/Label")
+upgrades_header = NodePath("NinePatchRect/VBoxContainer/VBoxContainer/UpgradesHeading")
+
+[node name="NinePatchRect" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 543.0
+offset_bottom = 622.0
+
+[node name="Container" type="Container" parent="NinePatchRect"]
+custom_minimum_size = Vector2(1, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect"]
+layout_mode = 2
+
+[node name="SelectionButtons" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="Container2" type="Container" parent="NinePatchRect/VBoxContainer/SelectionButtons"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+
+[node name="StandBtn" type="Button" parent="NinePatchRect/VBoxContainer/SelectionButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Stand"
+
+[node name="Container" type="Container" parent="NinePatchRect/VBoxContainer/SelectionButtons"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+
+[node name="UpgradesBtn" type="Button" parent="NinePatchRect/VBoxContainer/SelectionButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Upgrades"
+
+[node name="Container3" type="Container" parent="NinePatchRect/VBoxContainer/SelectionButtons"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+
+[node name="Container" type="Container" parent="NinePatchRect/VBoxContainer"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+text = "STAND"
+label_settings = SubResource("LabelSettings_vtqkm")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="StandHeading" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Current stand info:"
+label_settings = SubResource("LabelSettings_0mtml")
+
+[node name="StandsContainer" parent="NinePatchRect/VBoxContainer/VBoxContainer" instance=ExtResource("2_iq70m")]
+layout_mode = 2
+
+[node name="Space" type="Container" parent="NinePatchRect/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="UpgradesHeading" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Upgrades owned:"
+label_settings = SubResource("LabelSettings_0mtml")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Space2" type="Container" parent="NinePatchRect/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="UpgradesContainer" parent="NinePatchRect/VBoxContainer/VBoxContainer" instance=ExtResource("4_w1dp0")]
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 4
+
+[node name="Space4" type="Container" parent="NinePatchRect/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "EQUIPMENT"
+label_settings = SubResource("LabelSettings_vtqkm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="StandHeading2" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Espresso Machine"
+label_settings = SubResource("LabelSettings_7wr4g")
+
+[node name="StandsContainer2" parent="NinePatchRect/VBoxContainer/VBoxContainer/VBoxContainer" instance=ExtResource("4_dil70")]
+layout_mode = 2
+
+[node name="Space3" type="Container" parent="NinePatchRect/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="UpgradesHeading2" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Coffee Grinder"
+label_settings = SubResource("LabelSettings_7wr4g")
+
+[node name="StandsContainer3" parent="NinePatchRect/VBoxContainer/VBoxContainer/VBoxContainer2" instance=ExtResource("5_4tpye")]
+layout_mode = 2
+
+[node name="Container2" type="Container" parent="NinePatchRect"]
+custom_minimum_size = Vector2(1, 0)
+layout_mode = 2
+
+[connection signal="pressed" from="NinePatchRect/VBoxContainer/SelectionButtons/StandBtn" to="." method="_on_stand_btn_pressed"]

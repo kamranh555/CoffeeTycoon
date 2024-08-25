@@ -1,0 +1,142 @@
+[gd_scene load_steps=5 format=3 uid="uid://6pqw6xr8gobd"]
+
+[ext_resource type="Script" path="res://Scenes/Stand/location_container.gd" id="1_uo2pc"]
+[ext_resource type="Texture2D" uid="uid://baox2p2byac7p" path="res://Assets/Coffee-types.png" id="2_ir6r8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8kyih"]
+font_size = 18
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_b0unj"]
+font_size = 15
+font_color = Color(0, 0, 0, 1)
+
+[node name="LocationContainer" type="PanelContainer" node_paths=PackedStringArray("name_label", "info_label", "back_button", "forward_button", "select_button", "permit_label", "display_image")]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 119.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+script = ExtResource("1_uo2pc")
+name_label = NodePath("HBoxContainer/LocationContainer/LocationImage/LocationText/Label")
+info_label = NodePath("HBoxContainer/LocationContainer/LocationImage/LocationText/Info")
+back_button = NodePath("HBoxContainer/BackButton")
+forward_button = NodePath("HBoxContainer/ForwardButton")
+select_button = NodePath("HBoxContainer/LocationContainer/LocationImage/HBoxContainer/UpgradeLevel/SelectButton")
+permit_label = NodePath("HBoxContainer/LocationContainer/LocationImage/HBoxContainer/UpgradeLevel/CostLabel")
+display_image = NodePath("HBoxContainer/LocationContainer/LocationImage/Container/Sprite2D")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Container2" type="Container" parent="HBoxContainer"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+text = "  <  "
+
+[node name="Container4" type="Container" parent="HBoxContainer"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+
+[node name="LocationContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Container" type="Container" parent="HBoxContainer/LocationContainer"]
+custom_minimum_size = Vector2(10, 2)
+layout_mode = 2
+
+[node name="LocationImage" type="HBoxContainer" parent="HBoxContainer/LocationContainer"]
+custom_minimum_size = Vector2(64, 107)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Container" type="Container" parent="HBoxContainer/LocationContainer/LocationImage"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="HBoxContainer/LocationContainer/LocationImage/Container"]
+scale = Vector2(4, 4)
+texture = ExtResource("2_ir6r8")
+centered = false
+hframes = 4
+vframes = 2
+
+[node name="Container3" type="Container" parent="HBoxContainer/LocationContainer/LocationImage"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="LocationText" type="VBoxContainer" parent="HBoxContainer/LocationContainer/LocationImage"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="HBoxContainer/LocationContainer/LocationImage/LocationText"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Header - Location Name"
+label_settings = SubResource("LabelSettings_8kyih")
+vertical_alignment = 1
+
+[node name="Info" type="Label" parent="HBoxContainer/LocationContainer/LocationImage/LocationText"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Information
+About the location
+..."
+label_settings = SubResource("LabelSettings_b0unj")
+autowrap_mode = 2
+justification_flags = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/LocationContainer/LocationImage"]
+layout_mode = 2
+
+[node name="UpgradeLevel" type="VBoxContainer" parent="HBoxContainer/LocationContainer/LocationImage/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="CostLabel" type="Label" parent="HBoxContainer/LocationContainer/LocationImage/HBoxContainer/UpgradeLevel"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Permit Cost"
+label_settings = SubResource("LabelSettings_b0unj")
+autowrap_mode = 2
+justification_flags = 0
+
+[node name="SelectButton" type="Button" parent="HBoxContainer/LocationContainer/LocationImage/HBoxContainer/UpgradeLevel"]
+custom_minimum_size = Vector2(88, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Select"
+
+[node name="Container2" type="Container" parent="HBoxContainer/LocationContainer"]
+custom_minimum_size = Vector2(10, 2)
+layout_mode = 2
+
+[node name="Container3" type="Container" parent="HBoxContainer"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+
+[node name="ForwardButton" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+text = "  >  "
+
+[node name="Container" type="Container" parent="HBoxContainer"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+
+[connection signal="pressed" from="HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/LocationContainer/LocationImage/HBoxContainer/UpgradeLevel/SelectButton" to="." method="_on_select_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/ForwardButton" to="." method="_on_forward_button_pressed"]

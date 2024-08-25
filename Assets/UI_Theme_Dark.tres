@@ -216,7 +216,7 @@ texture_margin_right = 5.0
 texture_margin_bottom = 8.0
 
 [resource]
-default_font_size = 20
+default_font_size = 28
 Button/colors/font_color = Color(0.10748, 0.10748, 0.10748, 1)
 Button/colors/font_focus_color = Color(0.180004, 0.180005, 0.180005, 1)
 Button/colors/font_hover_color = Color(0.180392, 0.180392, 0.180392, 1)
@@ -247,7 +247,7 @@ ProgressBar/styles/background = SubResource("StyleBoxTexture_jm6nl")
 ProgressBar/styles/fill = SubResource("StyleBoxTexture_lgn27")
 TabBar/font_sizes/font_size = 20
 TabBar/fonts/font = SubResource("FontVariation_1ufhe")
-TabContainer/font_sizes/font_size = 20
+TabContainer/font_sizes/font_size = 28
 TabContainer/fonts/font = SubResource("FontVariation_52xud")
 TabContainer/icons/decrement = ExtResource("10_oke6k")
 TabContainer/icons/decrement_highlight = ExtResource("10_oke6k")

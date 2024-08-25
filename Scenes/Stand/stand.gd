@@ -4,7 +4,8 @@ extends Control
 @onready var upgrades_list = Global.upgrades_owned.keys()
 
 @export var stand_container : VBoxContainer
-@export var back_button : Button
+@export var stand_btn : Button
+@export var upgrades_btn : Button
 @export var upgrades_container : PanelContainer
 @export var header : Label
 @export var upgrades_header : Label
@@ -15,18 +16,17 @@ func _ready():
 func _process(_delta):
 	upgrades_list = Global.upgrades_owned.keys()
 	upgrades_header.text = "Stand upgrades owned: " + str(upgrades_list.size()) + "/" + str(Global.current_upgrades_limit)
-
-
-func _on_upgrades_button_pressed():
-	stand_container.visible = false
-	upgrades_container.visible = true
-	back_button.visible = true
-	header.text = "UPGRADES"
 	
+	if header.text == "STAND":
+		stand_btn.disabled = true
+		upgrades_btn.disabled = false
+	elif header.text == "UPGRADES" :
+		upgrades_btn.disabled = true
+		stand_btn.disabled = false
 
-
-func _on_back_button_pressed():
-	stand_container.visible = true
-	upgrades_container.visible = false
-	back_button.visible = false
+func _on_stand_btn_pressed() -> void:
 	header.text = "STAND"
+
+
+func _on_upgrades_btn_pressed() -> void:
+	header.text = "UPGRADES"
