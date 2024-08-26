@@ -4,7 +4,7 @@ extends Control
 @onready var locations_list : Array = sub_viewport.get_children()
 @onready var scene_view = sub_viewport.get_child(Global.current_location)
 
-@export var spawn_duration = 30  # Duration for spawning people
+@export var spawn_duration = 10  # Duration for spawning people
 var is_spawning = false  # Flag to control the spawning process
 
 @onready var day_timer = $DayTimer
@@ -146,6 +146,9 @@ func update_weather():
 		Global.current_weather = "Clear"
 
 func update_daily_profit():
+	Global.report_td["permits"] = -(Global.locations[Global.location_name].permit_cost)
+	Global.money -= Global.report_td["permits"]
+	
 	#Daily report update
 	for i in Global.report_td.keys():
 		Global.report_tw[i] += Global.report_td[i]

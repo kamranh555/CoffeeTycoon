@@ -87,6 +87,7 @@ var stand: Dictionary = {}
 var locations: Dictionary = {}
 signal update_location
 var current_location = 0
+var location_name : String = "Neighbourhood Block"
 var grinders: Dictionary = {}
 var current_grinder = "None"
 var espresso_machines: Dictionary = {}

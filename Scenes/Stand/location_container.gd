@@ -41,5 +41,6 @@ func _on_back_button_pressed():
 
 func _on_select_button_pressed() -> void:
 	Global.current_location = current_index
+	Global.location_name = Global.locations[list[current_index]].name
 	Global.update_location.emit()
 	update_ui()

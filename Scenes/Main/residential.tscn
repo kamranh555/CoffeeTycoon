@@ -17563,24 +17563,24 @@ y_sort_enabled = true
 [node name="SpawnFrequency" type="Timer" parent="Spawner"]
 
 [node name="Spawn1" type="Marker2D" parent="Spawner"]
-position = Vector2(0, 224)
+position = Vector2(0, 222)
 
 [node name="Spawn2" type="Marker2D" parent="Spawner"]
-position = Vector2(368, 224)
+position = Vector2(355, 223)
 
 [node name="Center" type="Marker2D" parent="Spawner"]
 position = Vector2(206, 224)
 
 [node name="Destroy1" type="Area2D" parent="Spawner"]
 y_sort_enabled = true
-position = Vector2(-8, 224)
+position = Vector2(-12, 224)
 
 [node name="CollisionShap2D" type="CollisionShape2D" parent="Spawner/Destroy1"]
 shape = SubResource("RectangleShape2D_2icda")
 
 [node name="Destroy2" type="Area2D" parent="Spawner"]
 y_sort_enabled = true
-position = Vector2(376, 224)
+position = Vector2(379, 224)
 
 [node name="CollisionShap2D" type="CollisionShape2D" parent="Spawner/Destroy2"]
 shape = SubResource("RectangleShape2D_2icda")
@@ -17592,7 +17592,8 @@ position = Vector2(205, 194)
 shape = SubResource("RectangleShape2D_j4o8l")
 
 [node name="CenterArea" type="Area2D" parent="Spawner"]
-position = Vector2(206, 244)
+position = Vector2(205, 229)
+scale = Vector2(1, 0.680005)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Spawner/CenterArea"]
 shape = SubResource("RectangleShape2D_as0q8")
