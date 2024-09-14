@@ -2,7 +2,7 @@ extends Node
 
 # Global variables accessible across scripts
 var money = 1000
-var base_demand = 25
+var base_demand = 20
 var popularity = 0
 var people_queue = []
 var stock_current = 0
@@ -40,6 +40,12 @@ var weather_probabilities = {
 	"Sum": {"rain": 0.1, "snow": 0.0},
 	"Fal": {"rain": 0.4, "snow": 0.0},
 	"Win": {"rain": 0.0, "snow": 0.3}  # 30% chance of snow in winter
+}
+
+var weather_impact = {
+	"Snow": 0.3,
+	"Rain": 0.5,
+	"Clear": 1.0
 }
 
 #Stands
@@ -82,8 +88,10 @@ var unlocked_stocks : Array = ["Cups"]
 signal update_stock_list
 var upgrades: Dictionary = {}
 var upgrades_owned: Dictionary = {}
+signal update_upgrades_visual
 var current_stand = "Basic Cart"
 var stand: Dictionary = {}
+signal update_stand_visual
 var locations: Dictionary = {}
 signal update_location
 var current_location = 0
@@ -91,6 +99,7 @@ var location_name : String = "Neighbourhood Block"
 var grinders: Dictionary = {}
 var current_grinder = "None"
 var espresso_machines: Dictionary = {}
+signal update_equipment_visual
 var current_espresso_machine = "None"
 var advertisements: Dictionary = {}
 #endregion
@@ -258,24 +267,6 @@ func format_cash(amount: float) -> String:
 		return "$" + with_commas + "." + decimal_part
 
 
-#func format_cash(amount: float) -> String:
-	## Convert to string with two decimal places
-	#var formatted = "%.2f" % amount
-	#var parts = formatted.split(".")
-	#var integer_part = parts[0]
-	#var decimal_part = parts[1]
-#
-	## Add commas
-	#var with_commas = ""
-	#var count = 0
-	#for i in range(integer_part.length() - 1, -1, -1):
-		#count += 1
-		#with_commas = integer_part[i] + with_commas
-		#if count % 3 == 0 and i != 0:
-			#with_commas = "," + with_commas
-#
-	#return "$" + with_commas + "." + decimal_part
-
 func create_ice() :
 	if upgrades_owned.has("Ice Maker") && stock_items["Ice"].stock < 25:
 		stock_items["Ice"].stock += upgrades_owned["Ice Maker"].bonus
@@ -300,6 +291,7 @@ func has_refridgerator() :
 func increase_attraction(upgrade) :
 	if upgrades_owned[upgrade].bonus_type == "Attraction" :
 		attraction += upgrades_owned[upgrade].bonus
+		update_upgrades_visual.emit(4)
 
 func increase_queue_size(upgrade) :
 	if upgrades_owned[upgrade].bonus_type == "Queue_Size":
@@ -309,6 +301,7 @@ func increase_queue_size(upgrade) :
 func rain_protection(upgrade) :
 	if upgrades_owned[upgrade].bonus_type == "Rain_Queue_Size":
 		rain_queue_limit += upgrades_owned[upgrade].bonus
+		update_upgrades_visual.emit(3)
 
 func faster_service(upgrade) :
 	if upgrades_owned[upgrade].bonus_type == "Service_Speed":
@@ -321,6 +314,7 @@ func increase_stock_capacity(upgrade):
 func specials_board_purchased(upgrade):
 	if upgrades_owned[upgrade].bonus_type == "Specials_Board":
 		specials_board = true
+		update_upgrades_visual.emit(2)
 
 func calculate_coffee_quality(coffee_level) -> float:
 	var level = coffee_level * 10
@@ -333,7 +327,7 @@ func calculate_coffee_quality(coffee_level) -> float:
 func wants_coffee() -> float:
 	var total
 	total = base_demand + popularity + attraction + ad_boost
-	return clamp(total, 20, 75)
+	return clamp(total, 20, 70)
 
 func get_customer_coffee_choice(current_season: String, specials_board: Array) -> String:
 	var total_demand = 0.0

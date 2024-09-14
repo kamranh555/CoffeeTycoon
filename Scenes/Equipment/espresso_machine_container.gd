@@ -40,5 +40,6 @@ func _on_upgrade_button_pressed():
 		Global.money -= cost
 		Global.current_espresso_machine = Global.espresso_machines[list[current_item_index + 1]].name
 		Global.coffee_speed = Global.base_coffee_speed - Global.espresso_machines[list[current_item_index + 1]].speed
+		Global.update_equipment_visual.emit(current_item_index + 1)
 		current_item_index += 1
 		update_ui()

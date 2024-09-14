@@ -51,7 +51,6 @@ func _on_upgrade_button_pressed():
 		Global.money -= cost
 		Global.upgrades_owned[Global.upgrades[list[current_item_index]].name] = Global.upgrades[list[current_item_index]]
 		update_ui()
-		
 		Global.increase_attraction(Global.upgrades[list[current_item_index]].name)
 		Global.increase_queue_size(Global.upgrades[list[current_item_index]].name)
 		Global.rain_protection(Global.upgrades[list[current_item_index]].name)

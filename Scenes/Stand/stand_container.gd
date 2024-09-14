@@ -43,5 +43,6 @@ func _on_upgrade_button_pressed():
 		Global.money -= cost
 		Global.current_stand = Global.stand[list[current_item_index + 1]].name
 		Global.current_upgrades_limit = Global.stand[list[current_item_index + 1]].bonus
+		Global.update_stand_visual.emit(current_item_index + 1)
 		current_item_index += 1
 		update_ui()

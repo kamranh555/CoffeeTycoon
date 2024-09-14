@@ -4,7 +4,7 @@ extends Control
 @onready var locations_list : Array = sub_viewport.get_children()
 @onready var scene_view = sub_viewport.get_child(Global.current_location)
 
-@export var spawn_duration = 10  # Duration for spawning people
+@export var spawn_duration = 21  # Duration for spawning people
 var is_spawning = false  # Flag to control the spawning process
 
 @onready var day_timer = $DayTimer
@@ -86,7 +86,10 @@ func _on_start_button_pressed():
 		day_timer.start()
 		is_spawning = true
 		scene_view.is_spawning = true
+		scene_view.spawn_timer.wait_time = 1
 		scene_view.spawn_timer.start()
+		scene_view.customer_coffee_desire = customer_coffee_desire_generate()
+		scene_view.spawn_count = 0
 	
 		Global.create_ice()
 		Global.create_water()
@@ -139,15 +142,15 @@ func update_weather():
 	var random_value = randf()
 	
 	if random_value < weather_chances["snow"]:
-		Global.current_weather = "Snowy"
+		Global.current_weather = "Snow"
 	elif random_value < weather_chances["snow"] + weather_chances["rain"]:
-		Global.current_weather = "Rainy"
+		Global.current_weather = "Rain"
 	else:
 		Global.current_weather = "Clear"
 
 func update_daily_profit():
 	Global.report_td["permits"] = -(Global.locations[Global.location_name].permit_cost)
-	Global.money -= Global.report_td["permits"]
+	Global.money += Global.report_td["permits"]
 	
 	#Daily report update
 	for i in Global.report_td.keys():
@@ -171,8 +174,6 @@ func _on_tab_container_tab_changed(tab):
 		start_button.text = "Start Day"
 		
 
-
-
 func update_location():
 	var list_count = locations_list.size()
 	
@@ -181,3 +182,19 @@ func update_location():
 	
 	scene_view = sub_viewport.get_child(Global.current_location)
 	scene_view.set_visible(true)
+
+func customer_coffee_desire_generate() :
+	var list = []
+	var customers = round(Global.wants_coffee() / (randi_range(75,133)) * ((spawn_duration - 1) / scene_view.spawn_frequency()))
+	var non_customers = round(((spawn_duration - 1) / scene_view.spawn_frequency()) - customers)
+	
+	for i in range(customers):
+		list.append(true)
+	for i in range(non_customers):
+		list.append(false)
+	list.shuffle()
+	print(list.size())
+	print(list.count(true))
+	print(list.count(false))
+	print(scene_view.spawn_frequency())
+	return list

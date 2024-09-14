@@ -8,10 +8,19 @@ var serving_progress_bar = preload("res://Scenes/Main/serving_progress_bar.tscn"
 var is_spawning = false
 var people_list = []
 var queue_limit = Global.queue_limit
+var customer_coffee_desire : Array #Array to hold coffee desires of customers to be generated
+var spawn_count = 0
 @export var spawn_timer: Timer
 @onready var queue = Global.people_queue
 @export var spawner: Node2D
 @onready var shoparea = get_node("Spawner/ShopArea")
+@onready var cart_list = get_node("CoffeeCart").get_children(false)
+@onready var cart_holder = get_node("CoffeeCart")
+
+func _ready():
+	Global.connect("update_stand_visual", Callable(self, "update_stand_visual"))
+	Global.connect("update_upgrades_visual", Callable(self, "update_upgrades_visual"))
+	Global.connect("update_equipment_visual", Callable(self, "update_equipment_visual"))
 
 func _on_center_area_body_entered(body):
 	if body.state == 0 && body.wants_coffee :
@@ -44,9 +53,6 @@ func _on_destroy_1_body_entered(body):
 func _on_destroy_2_body_entered(body):
 	people_list.erase(body)
 	body.queue_free()
-
-func _ready():
-	pass
 	
 func _process(_delta):
 	
@@ -67,15 +73,23 @@ func _process(_delta):
 		
 
 func _on_spawn_frequency_timeout():
+	
+	if spawn_count >= customer_coffee_desire.size() :
+		return
+	
 	# Function called when the spawn frequency timer times out
 	var new_person = people_scene.instantiate()
-	new_person.wants_coffee = randf_range(0,100) <= Global.wants_coffee()
+	new_person.wants_coffee = customer_coffee_desire[spawn_count]
 	new_person.coffee_expectation = randf_range(0,100)
 	new_person.start_serve_timers.connect(Callable(self, "on_start_serve_timers"))
 	var random = randi_range(1,2)
 	new_person.spawn_point = random
 	var spawn_point = ""
 	new_person.y_path_position = Vector2(0,randi_range(-12,12))
+	
+	spawn_count += 1
+	
+	spawn_timer.wait_time = spawn_frequency()
 	
 	
 	# to check if the path should be for customer or noncustomer
@@ -113,3 +127,41 @@ func on_coffee_prepared():
 	progress_bar.coffee_serve = false
 	shoparea.add_child(progress_bar)
 	progress_bar.position = Vector2(-15,-60)
+
+
+func spawn_frequency():
+	
+	var season = Global.locations[Global.location_name].season_crowd[Global.seasons[Global.date["season"]]]
+	var weather = Global.weather_impact[Global.current_weather]
+	var day_of_week = Global.locations[Global.location_name].week_crowd[weekday_weekend_check()]
+	
+	var wait_time = snapped((1 / (season + weather + day_of_week)), 0.01)
+	return wait_time
+
+func weekday_weekend_check():
+	if Global.date["day_of_week"] <= 4:
+		return "Weekday"
+	if Global.date["day_of_week"] > 4:
+		return "Weekend"
+
+func update_stand_visual(index):
+	for cart in cart_list : 
+		cart.set_visible(false)
+	
+	var current_cart = cart_holder.get_child(index)
+	current_cart.set_visible(true)
+
+func update_upgrades_visual(index):
+	for cart in cart_list : 
+		var upgrade = cart.get_child(index)
+		upgrade.set_visible(true)
+	
+func update_equipment_visual(index):
+	for cart in cart_list : 
+		var equipment_list = cart.get_child(1).get_children()
+		for equipment in equipment_list :
+			equipment.set_visible(false)
+	
+	for cart in cart_list : 
+		var current_equipment = cart.get_child(1).get_child(index)
+		current_equipment.set_visible(true)
