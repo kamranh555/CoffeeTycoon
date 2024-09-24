@@ -249,7 +249,7 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(680, 520)
 size_2d_override = Vector2i(680, 520)
 size_2d_override_stretch = true
-render_target_update_mode = 0
+render_target_update_mode = 4
 
 [node name="Residential" parent="MainVBox/MenuContainer/TabContainer/Main/VBoxContainer/SceneViewContainer/SceneView/SubViewportContainer/SubViewport" instance=ExtResource("5_y1aug")]
 scale = Vector2(2, 2)

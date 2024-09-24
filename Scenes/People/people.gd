@@ -188,20 +188,34 @@ func on_coffee_prepared():
 # Helper functions for service logic
 func start_service_if_possible(person):
 	var can_serve = true
+	
+	# Check if cups are available
 	if Global.stock_items["Cups"].stock <= 0:
 		sale_info_label.text = "Not enough cups"
 		can_serve = false
 
+	# Check if ingredients are available
 	for ingredient in Global.coffee_types[person.coffee_choice].recipe:
 		if Global.stock_items[ingredient].stock < Global.coffee_types[person.coffee_choice].recipe[ingredient]:
 			sale_info_label.text = "Not enough ingredients for " + person.coffee_choice
 			can_serve = false
 			person.purchase_start = true
 
+	# If the person can start their purchase
 	if person.purchase_start == false and can_serve == true:
 		person.purchase_start = true
 		start_serve_timers()
 
+	# If the person cannot be served due to lack of stock
+	if can_serve == false:
+		# Show feedback that they were not served and remove them from the queue
+		person.show_icon(7)  # Assuming 7 is an icon for failure
+		person.served = false
+		queue.erase(person)  # Remove from queue
+		state = PersonState.EXITING_CENTER  # Move to exit
+		return  # Early exit to avoid further processing
+	
+	 # If ingredients and cups are sufficient and the coffee is served
 	if can_serve and person.coffee_served:
 		# Update stock and sales
 		Global.stock_items["Cups"].stock -= 1

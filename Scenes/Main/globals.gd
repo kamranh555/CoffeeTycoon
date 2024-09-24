@@ -163,16 +163,16 @@ func _ready():
 
 	#Initialize all the stock items here ["Name"], [Cost], [QntyIncrease], [Quality], [Stock], [boolUnlocked], [CostPerUnit], [iconID]
 #region StockItems Data
-	stock_items["Coffee"] = StockItem.new("Coffee", 7.50, 5, 0, 15, true, 0.75, 0)
-	stock_items["Water"] = StockItem.new("Water", 1.00, 5, 0, 10, true, 0.10, 3)
-	stock_items["Milk"] = StockItem.new("Milk", 2.50, 5, 0, 5, false, 0.25, 2)
-	stock_items["Cream"] = StockItem.new("Cream", 3.00, 5, 0, 5, false, 0.30, 4)
-	stock_items["Chocolate"] = StockItem.new("Chocolate", 5.00, 5, 0, 5, false, 0.50, 5)
-	stock_items["Ice Cream"] = StockItem.new("Ice Cream", 7.50, 5, 0, 5, false, 0.75, 7)
-	stock_items["Ice"] = StockItem.new("Ice", 1.50, 5, 0, 5, false, 0.15, 6)
-	stock_items["Syrup"] = StockItem.new("Syrup", 5.00, 5, 0, 5, false, 0.50, 9)
-	stock_items["Liquor"] = StockItem.new("Liquor", 12.50, 5, 0, 5, false, 1.25, 11)
-	stock_items["Cups"] = StockItem.new("Cups", 2.00, 5, 0, 15, true, 0.20, 1)
+	stock_items["Coffee"] = StockItem.new("Coffee", 7.50, 5, 0, 20, true, 0.75, 0)
+	stock_items["Water"] = StockItem.new("Water", 1.00, 5, 0, 20, true, 0.10, 3)
+	stock_items["Milk"] = StockItem.new("Milk", 2.50, 5, 0, 20, false, 0.25, 2)
+	stock_items["Cream"] = StockItem.new("Cream", 3.00, 5, 0, 20, false, 0.30, 4)
+	stock_items["Chocolate"] = StockItem.new("Chocolate", 5.00, 5, 0, 20, false, 0.50, 5)
+	stock_items["Ice Cream"] = StockItem.new("Ice Cream", 7.50, 5, 0, 20, false, 0.75, 7)
+	stock_items["Ice"] = StockItem.new("Ice", 1.50, 5, 0, 20, false, 0.15, 6)
+	stock_items["Syrup"] = StockItem.new("Syrup", 5.00, 5, 0, 20, false, 0.50, 9)
+	stock_items["Liquor"] = StockItem.new("Liquor", 12.50, 5, 0, 20, false, 1.25, 11)
+	stock_items["Cups"] = StockItem.new("Cups", 2.00, 5, 0, 25, true, 0.20, 1)
 #endregion
 
 	# Initialize upgrades here using a dictionary with the upgrade's name as the key

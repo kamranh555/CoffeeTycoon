@@ -19,21 +19,25 @@ var spawn_count = 0
 @export var day_night_effect : CanvasModulate
 @export var night_lights : Node2D
 
+# PersonState Enum for managing states
+enum PersonState {
+	MOVING_TO_CENTER,
+	MOVING_TO_SHOP,
+	IN_QUEUE,
+	BEING_SERVED,
+	EXITING_CENTER,
+	EXITING_SCENE
+}
+
 func _ready():
 	Global.connect("update_stand_visual", Callable(self, "update_stand_visual"))
 	Global.connect("update_upgrades_visual", Callable(self, "update_upgrades_visual"))
 	Global.connect("update_equipment_visual", Callable(self, "update_equipment_visual"))
 
-func _on_center_area_body_entered(body):
-	if body.state == 0 && body.wants_coffee :
-		body.state = 1
-
 func _on_shop_area_body_entered(body):
-	
-	if body.state == 1 && body.wants_coffee :
-	
-		if queue.size() >= queue_limit :
-			body.state = 3
+	if body.state == PersonState.MOVING_TO_SHOP and body.wants_coffee:
+		if queue.size() >= queue_limit:
+			body.state = PersonState.EXITING_CENTER
 			body.served = false
 			body.show_icon(4)
 
@@ -92,7 +96,6 @@ func _on_spawn_frequency_timeout():
 	
 	spawn_timer.wait_time = spawn_frequency()
 	
-	
 	# to check if the path should be for customer or noncustomer
 	if random == 1 :
 		spawn_point = "Spawn1"
@@ -107,7 +110,7 @@ func _on_spawn_frequency_timeout():
 func all_people_served():
 	for people in people_list :
 		if people != null :
-			if people.state <= 2 :
+			if people.state in [PersonState.MOVING_TO_SHOP, PersonState.IN_QUEUE, PersonState.BEING_SERVED]:
 				return false
 	return true
 
