@@ -8,6 +8,8 @@ var people_queue = []
 var stock_current = 0
 var points = 10
 var experience = 0
+var day_duration : float = 60.00
+var game_speed : int = 1
 
 # Date and time
 var date = {
@@ -58,6 +60,7 @@ var base_serve_time = 2.00
 var serving_time = 2.00
 var base_coffee_speed = 3.00
 var coffee_speed = 3.00
+signal coffee_served
 var base_quality = 20
 var grinder_level = 0
 var base_queue_limit = 5
@@ -358,3 +361,9 @@ func ad_boost_calculator():
 	for ad in advertisements :
 		if advertisements[ad].days_left > 0 :
 			ad_boost += advertisements[ad].bonus
+
+
+func change_game_speed(speed : int):
+	game_speed = speed
+	Engine.time_scale = game_speed
+	

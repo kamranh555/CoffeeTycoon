@@ -2,7 +2,6 @@ extends PanelContainer
 
 # Preload the people scene for instantiation
 var people_scene = preload("res://Scenes/People/people.tscn")
-var serving_progress_bar = preload("res://Scenes/Main/serving_progress_bar.tscn")
 
 # Variables defomed for the queue managing
 var is_spawning = false
@@ -16,6 +15,9 @@ var spawn_count = 0
 @onready var shoparea = get_node("Spawner/ShopArea")
 @onready var cart_list = get_node("CoffeeCart").get_children(false)
 @onready var cart_holder = get_node("CoffeeCart")
+@onready var rain_drops = get_node("Rain")
+@export var day_night_effect : CanvasModulate
+@export var night_lights : Node2D
 
 func _ready():
 	Global.connect("update_stand_visual", Callable(self, "update_stand_visual"))
@@ -81,7 +83,6 @@ func _on_spawn_frequency_timeout():
 	var new_person = people_scene.instantiate()
 	new_person.wants_coffee = customer_coffee_desire[spawn_count]
 	new_person.coffee_expectation = randf_range(0,100)
-	new_person.start_serve_timers.connect(Callable(self, "on_start_serve_timers"))
 	var random = randi_range(1,2)
 	new_person.spawn_point = random
 	var spawn_point = ""
@@ -109,25 +110,6 @@ func all_people_served():
 			if people.state <= 2 :
 				return false
 	return true
-	
-func on_start_serve_timers():
-
-	var progress_bar = serving_progress_bar.instantiate()
-	progress_bar.run_time = Global.coffee_speed
-	progress_bar.index = 0
-	progress_bar.coffee_serve = true
-	shoparea.add_child(progress_bar)
-	progress_bar.position = Vector2(-15,-60)
-	progress_bar.coffee_prepared.connect(Callable(self, "on_coffee_prepared"))
-	
-func on_coffee_prepared():
-	var progress_bar = serving_progress_bar.instantiate()
-	progress_bar.run_time = Global.serving_time
-	progress_bar.index = 1
-	progress_bar.coffee_serve = false
-	shoparea.add_child(progress_bar)
-	progress_bar.position = Vector2(-15,-60)
-
 
 func spawn_frequency():
 	
@@ -165,3 +147,13 @@ func update_equipment_visual(index):
 	for cart in cart_list : 
 		var current_equipment = cart.get_child(1).get_child(index)
 		current_equipment.set_visible(true)
+		
+func activate_rain() :
+	if Global.current_weather == "Rain" :
+		rain_drops.visible = true
+	else : 
+		rain_drops.visible = false
+		
+func day_night_cycle() :
+	day_night_effect.cycle_active = true
+	night_lights.cycle_active = true

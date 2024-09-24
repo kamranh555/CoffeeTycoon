@@ -4,7 +4,7 @@ extends Control
 @onready var locations_list : Array = sub_viewport.get_children()
 @onready var scene_view = sub_viewport.get_child(Global.current_location)
 
-@export var spawn_duration = 21  # Duration for spawning people
+@onready var spawn_duration = Global.day_duration  # Duration for spawning people
 var is_spawning = false  # Flag to control the spawning process
 
 @onready var day_timer = $DayTimer
@@ -17,6 +17,7 @@ var is_spawning = false  # Flag to control the spawning process
 @export var timer_label: Label # Reference to the Timer Label
 @export var tab_container: TabContainer
 @export var date_label : Label # Reference to the Date Label
+@export var speed_btn : Button
 
 func _ready():
 	
@@ -28,6 +29,8 @@ func _ready():
 	update_date_label()
 	Global.connect("update_location", Callable(self, "update_location"))
 	Global.update_location.emit()
+	
+	Engine.time_scale = Global.game_speed
 
 func _process(_delta):
 	money_label.text = "Money: " + Global.format_cash(Global.money)
@@ -90,6 +93,8 @@ func _on_start_button_pressed():
 		scene_view.spawn_timer.start()
 		scene_view.customer_coffee_desire = customer_coffee_desire_generate()
 		scene_view.spawn_count = 0
+		scene_view.activate_rain()
+		scene_view.day_night_cycle()
 	
 		Global.create_ice()
 		Global.create_water()
@@ -198,3 +203,17 @@ func customer_coffee_desire_generate() :
 	print(list.count(false))
 	print(scene_view.spawn_frequency())
 	return list
+
+
+func _on_speed_btn_pressed() -> void:
+	if Global.game_speed == int(1):
+		speed_btn.text = " 2x "
+		Global.change_game_speed(2)
+	elif Global.game_speed == int(2):
+		speed_btn.text = " 4x "
+		Global.change_game_speed(4)
+	elif Global.game_speed == int(4):
+		speed_btn.text = " 1x "
+		Global.change_game_speed(1)
+	
+	

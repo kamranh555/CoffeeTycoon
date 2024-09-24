@@ -36,7 +36,7 @@ expand_margin_bottom = 6.0
 [sub_resource type="LabelSettings" id="LabelSettings_xn6bg"]
 font_size = 30
 
-[node name="Main" type="Control" node_paths=PackedStringArray("sub_viewport", "money_label", "sale_info_label", "points_label", "start_button", "popularity_bar", "experience_bar", "timer_label", "tab_container", "date_label")]
+[node name="Main" type="Control" node_paths=PackedStringArray("sub_viewport", "money_label", "sale_info_label", "points_label", "start_button", "popularity_bar", "experience_bar", "timer_label", "tab_container", "date_label", "speed_btn")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -56,6 +56,7 @@ experience_bar = NodePath("MainVBox/KeyInfo/VBoxContainer/HBoxContainer2/Experie
 timer_label = NodePath("MainVBox/OtherInfo/VBoxContainer/HBoxContainer/TimerLabel")
 tab_container = NodePath("MainVBox/MenuContainer/TabContainer")
 date_label = NodePath("MainVBox/KeyInfo/VBoxContainer/HBoxContainer/DateLabel")
+speed_btn = NodePath("MainVBox/MenuContainer/TabContainer/Main/VBoxContainer/SceneViewContainer/SceneView/SpeedBtn")
 
 [node name="MainVBox" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -248,7 +249,7 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(680, 520)
 size_2d_override = Vector2i(680, 520)
 size_2d_override_stretch = true
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="Residential" parent="MainVBox/MenuContainer/TabContainer/Main/VBoxContainer/SceneViewContainer/SceneView/SubViewportContainer/SubViewport" instance=ExtResource("5_y1aug")]
 scale = Vector2(2, 2)
@@ -256,6 +257,15 @@ scale = Vector2(2, 2)
 [node name="Park" parent="MainVBox/MenuContainer/TabContainer/Main/VBoxContainer/SceneViewContainer/SceneView/SubViewportContainer/SubViewport" instance=ExtResource("3_1batx")]
 visible = false
 scale = Vector2(2, 2)
+
+[node name="SpeedBtn" type="Button" parent="MainVBox/MenuContainer/TabContainer/Main/VBoxContainer/SceneViewContainer/SceneView"]
+custom_minimum_size = Vector2(85, 51)
+layout_mode = 0
+offset_left = 582.0
+offset_top = 460.0
+offset_right = 667.0
+offset_bottom = 511.0
+text = " 1x "
 
 [node name="Container2" type="Container" parent="MainVBox/MenuContainer/TabContainer/Main/VBoxContainer"]
 custom_minimum_size = Vector2(0, 10)
@@ -447,4 +457,5 @@ process_callback = 0
 one_shot = true
 
 [connection signal="tab_changed" from="MainVBox/MenuContainer/TabContainer" to="." method="_on_tab_container_tab_changed"]
+[connection signal="pressed" from="MainVBox/MenuContainer/TabContainer/Main/VBoxContainer/SceneViewContainer/SceneView/SpeedBtn" to="." method="_on_speed_btn_pressed"]
 [connection signal="pressed" from="MainVBox/StartButton" to="." method="_on_start_button_pressed"]

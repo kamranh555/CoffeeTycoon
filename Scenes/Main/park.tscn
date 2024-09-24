@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=4 uid="uid://c1wlypkhf1wmo"]
+[gd_scene load_steps=10 format=4 uid="uid://c1wlypkhf1wmo"]
 
 [ext_resource type="Script" path="res://Scenes/Main/simulate_day.gd" id="1_chqvt"]
 [ext_resource type="TileSet" uid="uid://b1cxw6hwiai78" path="res://Assets/Tilesets/tileset.tres" id="2_dja3q"]
 [ext_resource type="TileSet" uid="uid://cr7xg8b67bpeu" path="res://Assets/Tilesets/tileset_stand1.tres" id="3_y0bpt"]
+[ext_resource type="PackedScene" uid="uid://dgda5lufbed1i" path="res://Scenes/Main/rain.tscn" id="4_03o1y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rymy1"]
 bg_color = Color(0.0470588, 0.0470588, 0.0470588, 1)
@@ -188,6 +189,11 @@ y_sort_enabled = true
 use_parent_material = true
 tile_map_data = PackedByteArray("AAAKAAgACAAAAAUAAAA=")
 tile_set = ExtResource("3_y0bpt")
+
+[node name="Rain" parent="." instance=ExtResource("4_03o1y")]
+visible = false
+z_index = 2
+z_as_relative = false
 
 [node name="Spawner" type="Node2D" parent="."]
 y_sort_enabled = true

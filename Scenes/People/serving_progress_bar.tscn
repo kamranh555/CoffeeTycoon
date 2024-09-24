@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cfykqpf6v2m8j"]
 
 [ext_resource type="Texture2D" uid="uid://c5hn4dk32usf5" path="res://Assets/Coffee-igredients.png" id="1_t5lab"]
-[ext_resource type="Script" path="res://Scenes/Main/serving_progress_bar.gd" id="1_ukv44"]
+[ext_resource type="Script" path="res://Scenes/People/serving_progress_bar.gd" id="1_ukv44"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjsa5"]
 

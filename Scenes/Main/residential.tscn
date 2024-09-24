@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://brsjl4rh4eue0"]
+[gd_scene load_steps=38 format=4 uid="uid://brsjl4rh4eue0"]
 
 [ext_resource type="Script" path="res://Scenes/Main/simulate_day.gd" id="1_7wqjb"]
 [ext_resource type="Texture2D" uid="uid://co1ckfinq0kpi" path="res://Assets/Tilesets/Exteriors/ExteriorsTileset.png" id="2_1bnkb"]
@@ -12,6 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://nhdm0ko1ois1" path="res://Assets/Tilesets/Exteriors/ResidentialTileMap.png" id="10_auqtm"]
 [ext_resource type="TileSet" uid="uid://b1cxw6hwiai78" path="res://Assets/Tilesets/tileset.tres" id="11_2qud8"]
 [ext_resource type="TileSet" uid="uid://cr7xg8b67bpeu" path="res://Assets/Tilesets/tileset_stand1.tres" id="12_q00pr"]
+[ext_resource type="PackedScene" uid="uid://dgda5lufbed1i" path="res://Scenes/Main/rain.tscn" id="13_6hm21"]
+[ext_resource type="Script" path="res://Scenes/Main/day_night_cycle.gd" id="14_ejrgc"]
+[ext_resource type="Texture2D" uid="uid://bth62ndnhjfba" path="res://Assets/daynightcycle-gradient-texture.tres" id="15_3dvrj"]
+[ext_resource type="Script" path="res://Scenes/Main/night_lights.gd" id="16_3uuto"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rymy1"]
 bg_color = Color(0.0470588, 0.0470588, 0.0470588, 1)
@@ -17507,7 +17511,41 @@ expand_margin_left = 2.0
 expand_margin_right = 2.0
 expand_margin_bottom = 8.0
 
-[node name="Residential" type="PanelContainer" node_paths=PackedStringArray("spawn_timer", "spawner")]
+[sub_resource type="Gradient" id="Gradient_1y85x"]
+offsets = PackedFloat32Array(0, 0.0742049, 0.742049)
+colors = PackedColorArray(0.771702, 0.606747, 0, 1, 0.902073, 0.902073, 0.489076, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_12ylm"]
+gradient = SubResource("Gradient_1y85x")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_fc5ig"]
+offsets = PackedFloat32Array(0, 0.996466)
+colors = PackedColorArray(0.968627, 0.968627, 0.490196, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_k5hie"]
+gradient = SubResource("Gradient_fc5ig")
+width = 70
+height = 80
+fill = 1
+fill_from = Vector2(0.5, 0.338)
+fill_to = Vector2(0.478632, 0.863248)
+
+[sub_resource type="Gradient" id="Gradient_twie4"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dq0o3"]
+gradient = SubResource("Gradient_twie4")
+width = 32
+height = 50
+fill = 1
+fill_from = Vector2(0.5, 0.15)
+fill_to = Vector2(0.486111, 0.769231)
+
+[node name="Residential" type="PanelContainer" node_paths=PackedStringArray("spawn_timer", "spawner", "day_night_effect", "night_lights")]
 y_sort_enabled = true
 offset_top = -8.0
 offset_right = 340.0
@@ -17516,6 +17554,8 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_rymy1")
 script = ExtResource("1_7wqjb")
 spawn_timer = NodePath("Spawner/SpawnFrequency")
 spawner = NodePath("Spawner")
+day_night_effect = NodePath("DayNightEffect")
+night_lights = NodePath("NightLights")
 
 [node name="GroundBase" type="TileMapLayer" parent="."]
 use_parent_material = true
@@ -17667,6 +17707,16 @@ use_parent_material = true
 tile_map_data = PackedByteArray("AAAKAAgACAAAAAUAAAA=")
 tile_set = ExtResource("12_q00pr")
 
+[node name="Rain" parent="." instance=ExtResource("13_6hm21")]
+visible = false
+z_index = 2
+z_as_relative = false
+
+[node name="DayNightEffect" type="CanvasModulate" parent="."]
+color = Color(0.168627, 0.180392, 0.333333, 1)
+script = ExtResource("14_ejrgc")
+gradient_texture = ExtResource("15_3dvrj")
+
 [node name="Spawner" type="Node2D" parent="."]
 y_sort_enabled = true
 
@@ -17712,6 +17762,37 @@ shape = SubResource("RectangleShape2D_as0q8")
 custom_minimum_size = Vector2(340, 260)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_n8okm")
+
+[node name="NightLights" type="Node2D" parent="."]
+script = ExtResource("16_3uuto")
+
+[node name="StreetLamp" type="PointLight2D" parent="NightLights"]
+position = Vector2(120, 208)
+texture = SubResource("GradientTexture2D_12ylm")
+
+[node name="StreetLamp2" type="PointLight2D" parent="NightLights"]
+position = Vector2(344, 209)
+texture = SubResource("GradientTexture2D_12ylm")
+
+[node name="ShopLight" type="PointLight2D" parent="NightLights"]
+position = Vector2(204, 189)
+texture = SubResource("GradientTexture2D_k5hie")
+
+[node name="HomeLight" type="PointLight2D" parent="NightLights"]
+position = Vector2(24, 142)
+texture = SubResource("GradientTexture2D_dq0o3")
+
+[node name="HomeLight2" type="PointLight2D" parent="NightLights"]
+position = Vector2(-7, 142)
+texture = SubResource("GradientTexture2D_dq0o3")
+
+[node name="HomeLight3" type="PointLight2D" parent="NightLights"]
+position = Vector2(310, 142)
+texture = SubResource("GradientTexture2D_dq0o3")
+
+[node name="HomeLight4" type="PointLight2D" parent="NightLights"]
+position = Vector2(279, 142)
+texture = SubResource("GradientTexture2D_dq0o3")
 
 [connection signal="timeout" from="Spawner/SpawnFrequency" to="." method="_on_spawn_frequency_timeout"]
 [connection signal="body_entered" from="Spawner/Destroy1" to="." method="_on_destroy_1_body_entered"]

@@ -21,4 +21,5 @@ func _process(delta):
 		self.queue_free()
 		
 	elif progress_bar.value >= run_time && coffee_serve == false:
+		Global.coffee_served.emit()
 		self.queue_free()
