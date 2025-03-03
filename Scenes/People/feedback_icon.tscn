@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://by0kk3pjn4x0c"]
 
-[ext_resource type="Script" path="res://Scenes/People/feedback_icon.gd" id="1_j41di"]
+[ext_resource type="Script" uid="uid://cuynr6mr5c0a7" path="res://Scenes/People/feedback_icon.gd" id="1_j41di"]
 [ext_resource type="Texture2D" uid="uid://demp06yicxhci" path="res://Assets/Coffee_icons.png" id="2_rt70i"]
 
 [node name="FeedbackIcon" type="Node2D"]

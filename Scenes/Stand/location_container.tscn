@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://6pqw6xr8gobd"]
 
-[ext_resource type="Script" path="res://Scenes/Stand/location_container.gd" id="1_uo2pc"]
+[ext_resource type="Script" uid="uid://dywp7musl0wsh" path="res://Scenes/Stand/location_container.gd" id="1_uo2pc"]
 [ext_resource type="Texture2D" uid="uid://baox2p2byac7p" path="res://Assets/Coffee-types.png" id="2_ir6r8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8kyih"]

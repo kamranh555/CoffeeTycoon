@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cjumiamkhsasw"]
 
-[ext_resource type="Script" path="res://Scenes/Marketing/social_media_container.gd" id="1_ngj5h"]
+[ext_resource type="Script" uid="uid://w5b8krgwyyn6" path="res://Scenes/Marketing/social_media_container.gd" id="1_ngj5h"]
 [ext_resource type="Texture2D" uid="uid://baox2p2byac7p" path="res://Assets/Coffee-types.png" id="2_bncqt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8kyih"]

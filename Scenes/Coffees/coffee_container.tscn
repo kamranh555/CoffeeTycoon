@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://crpb0hhm2c5mk"]
 
 [ext_resource type="Theme" uid="uid://k0vm0v88mupl" path="res://Assets/UI_Theme_Light.tres" id="1_fo5t2"]
-[ext_resource type="Script" path="res://Scenes/Coffees/coffee_container.gd" id="1_qbw3s"]
+[ext_resource type="Script" uid="uid://mvv6n7eee14q" path="res://Scenes/Coffees/coffee_container.gd" id="1_qbw3s"]
 [ext_resource type="Texture2D" uid="uid://dt3jixc704hr1" path="res://Assets/Coffee_Sprites.png" id="2_m66se"]
 [ext_resource type="Texture2D" uid="uid://dphgcn1nrmr8o" path="res://Assets/UI_Selection/Pnl_Light_Mask.png" id="4_a63xv"]
 
@@ -62,6 +62,7 @@ offset_right = 117.5
 offset_bottom = 137.5
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(2, 2)
 mouse_filter = 2
 theme = ExtResource("1_fo5t2")
 script = ExtResource("1_qbw3s")

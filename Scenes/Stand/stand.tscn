@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://dyfu2aa5ov68s"]
 
-[ext_resource type="Script" path="res://Scenes/Stand/stand.gd" id="1_2154c"]
+[ext_resource type="Script" uid="uid://dpimhyuggwn1x" path="res://Scenes/Stand/stand.gd" id="1_2154c"]
 [ext_resource type="Theme" uid="uid://c8h0vghiff0b4" path="res://Assets/UI_Theme_Dark.tres" id="2_6vr2x"]
 [ext_resource type="PackedScene" uid="uid://qfb66ch5t7t8" path="res://Scenes/Stand/stand_container.tscn" id="2_iq70m"]
 [ext_resource type="PackedScene" uid="uid://r4bom1to1bcn" path="res://Scenes/Equipment/espresso_machines_container_buy.tscn" id="4_dil70"]

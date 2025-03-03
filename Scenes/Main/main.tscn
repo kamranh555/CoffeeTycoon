@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://bqu8vwv7qkndr"]
 
-[ext_resource type="Script" path="res://Scenes/Main/main.gd" id="1_4bokm"]
+[ext_resource type="Script" uid="uid://210ef30jd3ir" path="res://Scenes/Main/main.gd" id="1_4bokm"]
 [ext_resource type="Theme" uid="uid://k0vm0v88mupl" path="res://Assets/UI_Theme_Light.tres" id="2_nc41i"]
 [ext_resource type="PackedScene" uid="uid://c1wlypkhf1wmo" path="res://Scenes/Main/park.tscn" id="3_1batx"]
 [ext_resource type="Texture2D" uid="uid://boramfb7cege4" path="res://Assets/UI_Selection/Progress_Bar_Fill_Green.png" id="4_1ibga"]

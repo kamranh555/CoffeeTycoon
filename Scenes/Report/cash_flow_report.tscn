@@ -1,0 +1,254 @@
+[gd_scene load_steps=7 format=3 uid="uid://b0aptgnxwbw3n"]
+
+[ext_resource type="Texture2D" uid="uid://2r6tslwlq6j" path="res://Assets/UI_Selection/Pnl_Light.png" id="1_an6mv"]
+[ext_resource type="FontFile" uid="uid://cr6lemlgbkh0u" path="res://Assets/UI_Selection/Arial Bold.ttf" id="3_jodiu"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8o8cu"]
+texture = ExtResource("1_an6mv")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_udsi0"]
+draw_center = false
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4sw1e"]
+font = ExtResource("3_jodiu")
+font_size = 18
+font_color = Color(0, 0, 0, 1)
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ehv0h"]
+draw_center = false
+border_width_top = 2
+border_color = Color(0, 0, 0, 1)
+
+[node name="ProfitAndLoss" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_8o8cu")
+
+[node name="Description" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Description"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Description" type="Label" parent="Description/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_udsi0")
+text = " 
+ 
+"
+label_settings = SubResource("LabelSettings_4sw1e")
+
+[node name="SalesLabel" type="Label" parent="Description/VBoxContainer"]
+layout_mode = 2
+text = "Total Sales"
+label_settings = SubResource("LabelSettings_4sw1e")
+
+[node name="TipsLabel" type="Label" parent="Description/VBoxContainer"]
+layout_mode = 2
+text = "Tips Received"
+label_settings = SubResource("LabelSettings_4sw1e")
+
+[node name="CostLabel" type="Label" parent="Description/VBoxContainer"]
+layout_mode = 2
+text = "Sold Stock"
+label_settings = SubResource("LabelSettings_4sw1e")
+
+[node name="WastedLabel" type="Label" parent="Description/VBoxContainer"]
+layout_mode = 2
+text = "Wasted Stock"
+label_settings = SubResource("LabelSettings_4sw1e")
+
+[node name="PermitsLabel" type="Label" parent="Description/VBoxContainer"]
+layout_mode = 2
+text = "Permits"
+label_settings = SubResource("LabelSettings_4sw1e")
+
+[node name="MarketingLabel" type="Label" parent="Description/VBoxContainer"]
+layout_mode = 2
+text = "Marketing"
+label_settings = SubResource("LabelSettings_4sw1e")
+
+[node name="ProfitLabel" type="Label" parent="Description/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ehv0h")
+text = "Net Profit"
+label_settings = SubResource("LabelSettings_4sw1e")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Description"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+
+[node name="Description" type="Label" parent="Description/VBoxContainer2"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_udsi0")
+text = " 
+Today"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 1
+
+[node name="SalesLabel" type="Label" parent="Description/VBoxContainer2"]
+layout_mode = 2
+text = "10,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="TipsLabel" type="Label" parent="Description/VBoxContainer2"]
+layout_mode = 2
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="CostLabel" type="Label" parent="Description/VBoxContainer2"]
+layout_mode = 2
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="WastedLabel" type="Label" parent="Description/VBoxContainer2"]
+layout_mode = 2
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="PermitsLabel" type="Label" parent="Description/VBoxContainer2"]
+layout_mode = 2
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="MarketingLabel" type="Label" parent="Description/VBoxContainer2"]
+layout_mode = 2
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="ProfitLabel" type="Label" parent="Description/VBoxContainer2"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ehv0h")
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Description"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+
+[node name="Description" type="Label" parent="Description/VBoxContainer3"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_udsi0")
+text = "This
+Week
+"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 1
+
+[node name="SalesLabel" type="Label" parent="Description/VBoxContainer3"]
+layout_mode = 2
+text = "10,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="TipsLabel" type="Label" parent="Description/VBoxContainer3"]
+layout_mode = 2
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="CostLabel" type="Label" parent="Description/VBoxContainer3"]
+layout_mode = 2
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="WastedLabel" type="Label" parent="Description/VBoxContainer3"]
+layout_mode = 2
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="PermitsLabel" type="Label" parent="Description/VBoxContainer3"]
+layout_mode = 2
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="MarketingLabel" type="Label" parent="Description/VBoxContainer3"]
+layout_mode = 2
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="ProfitLabel" type="Label" parent="Description/VBoxContainer3"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ehv0h")
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="Description"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+
+[node name="Description" type="Label" parent="Description/VBoxContainer4"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_udsi0")
+text = "Last
+Week"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 1
+
+[node name="SalesLabel" type="Label" parent="Description/VBoxContainer4"]
+layout_mode = 2
+text = "10,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="TipsLabel" type="Label" parent="Description/VBoxContainer4"]
+layout_mode = 2
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="CostLabel" type="Label" parent="Description/VBoxContainer4"]
+layout_mode = 2
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="WastedLabel" type="Label" parent="Description/VBoxContainer4"]
+layout_mode = 2
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="PermitsLabel" type="Label" parent="Description/VBoxContainer4"]
+layout_mode = 2
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="MarketingLabel" type="Label" parent="Description/VBoxContainer4"]
+layout_mode = 2
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2
+
+[node name="ProfitLabel" type="Label" parent="Description/VBoxContainer4"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ehv0h")
+text = "1,000.00"
+label_settings = SubResource("LabelSettings_4sw1e")
+horizontal_alignment = 2

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://byaxepryhe1gg"]
 
-[ext_resource type="Script" path="res://Scenes/Main/Overview/Stock/stock_info_instance.gd" id="1_fv3s5"]
+[ext_resource type="Script" uid="uid://bw6sox0jq8vw4" path="res://Scenes/Main/Overview/Stock/stock_info_instance.gd" id="1_fv3s5"]
 [ext_resource type="Texture2D" uid="uid://dfb8hb81ygwre" path="res://Assets/Supplies_Sprites.png" id="2_1o6k2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_83s8w"]
@@ -16,6 +16,7 @@ offset_top = -13.0
 offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(2, 2)
 script = ExtResource("1_fv3s5")
 stock_image = NodePath("BoxContainer/Sprite2D")
 stock_text = NodePath("Label")

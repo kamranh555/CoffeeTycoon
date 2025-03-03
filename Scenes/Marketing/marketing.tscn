@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dq1a2kmlshwdp"]
 
-[ext_resource type="Script" path="res://Scenes/Marketing/marketing.gd" id="1_d7r1h"]
+[ext_resource type="Script" uid="uid://d0mdx26mu5ojn" path="res://Scenes/Marketing/marketing.gd" id="1_d7r1h"]
 [ext_resource type="PackedScene" uid="uid://cjumiamkhsasw" path="res://Scenes/Marketing/social_media_container.tscn" id="2_3ldcu"]
 [ext_resource type="PackedScene" uid="uid://b4iysy12vr872" path="res://Scenes/Marketing/advertising_container.tscn" id="2_ipr40"]
 

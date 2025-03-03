@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dn8kxk8pwvoqu"]
 
-[ext_resource type="Script" path="res://Scenes/Main/Overview/Coffees/coffee_sold_info.gd" id="1_mp1i1"]
+[ext_resource type="Script" uid="uid://d2vbrhc2cu03a" path="res://Scenes/Main/Overview/Coffees/coffee_sold_info.gd" id="1_mp1i1"]
 
 [node name="CoffeeSoldInfo" type="Control" node_paths=PackedStringArray("grid_container")]
 layout_mode = 3

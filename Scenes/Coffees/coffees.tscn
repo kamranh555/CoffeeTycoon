@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://by0kjcwwjujbe"]
 
-[ext_resource type="Script" path="res://Scenes/Coffees/coffees.gd" id="1_rkfed"]
+[ext_resource type="Script" uid="uid://dcik55a2jpgv" path="res://Scenes/Coffees/coffees.gd" id="1_rkfed"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vtqkm"]
 font_size = 26

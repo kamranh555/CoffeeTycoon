@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://mekkg2e0h3o5"]
 
-[ext_resource type="Script" path="res://Scenes/Report/profit_and_loss.gd" id="1_7nu66"]
+[ext_resource type="Script" uid="uid://nncww2swjdnb" path="res://Scenes/Report/profit_and_loss.gd" id="1_7nu66"]
 [ext_resource type="Texture2D" uid="uid://2r6tslwlq6j" path="res://Assets/UI_Selection/Pnl_Light.png" id="1_cehdb"]
 [ext_resource type="FontFile" uid="uid://cr6lemlgbkh0u" path="res://Assets/UI_Selection/Arial Bold.ttf" id="3_ap6v8"]
 

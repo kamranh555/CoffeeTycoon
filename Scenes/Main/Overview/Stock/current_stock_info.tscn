@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://k2fxfbhtlsgn"]
 
-[ext_resource type="Script" path="res://Scenes/Main/Overview/Stock/current_stock_info.gd" id="1_2jqch"]
+[ext_resource type="Script" uid="uid://cmwgw7okqu22v" path="res://Scenes/Main/Overview/Stock/current_stock_info.gd" id="1_2jqch"]
 
 [node name="CurrentStockInfo" type="Control" node_paths=PackedStringArray("grid_container")]
 layout_mode = 3
@@ -17,4 +17,5 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
+scale = Vector2(2, 2)
 columns = 7

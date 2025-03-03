@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cafpwjf35ck7l"]
 
-[ext_resource type="Script" path="res://Scenes/Stock/stock_container.gd" id="1_e1fdo"]
+[ext_resource type="Script" uid="uid://dnnj0c5dbx2rk" path="res://Scenes/Stock/stock_container.gd" id="1_e1fdo"]
 [ext_resource type="Texture2D" uid="uid://dfb8hb81ygwre" path="res://Assets/Supplies_Sprites.png" id="2_66y78"]
 [ext_resource type="Theme" uid="uid://k0vm0v88mupl" path="res://Assets/UI_Theme_Light.tres" id="3_geoml"]
 
